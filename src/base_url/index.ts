@@ -1,0 +1,1 @@
+export const base_url = "https://server1.pearl-developer.com/abhivriti/public/api/"

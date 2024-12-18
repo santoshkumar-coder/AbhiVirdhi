@@ -1,0 +1,93 @@
+import React, { useEffect, useState } from 'react';
+import jaipurWallpaper from '../../assests/jaipur wallpaper.jpg'
+import Address_Information from './Address_Information';
+import Wheeler_Information from './wheeler_information';
+import WhyChosse from './whyChoose';
+import Areas_serve from './Areas_weserve';
+import GetPhone from './Get_phone_app';
+import Other_services from './Other_services';
+import Service_OverView from './Service_overview';
+import OurOtherServices from './OurOtherServices';
+import { areas } from '../../api_fetch/cities';
+import { useParams } from 'react-router-dom';
+
+interface State {
+    image: string,
+    name: string
+}
+
+interface DataItem {
+    id: number;
+    name: string;
+}
+
+interface ResponseData {
+    state: State;
+    data: DataItem[];
+}
+
+const Service_Information: React.FC = () => {
+    const [data, setData] = useState<ResponseData | null>(null);
+    const { city_id } = useParams<{ city_id: string }>();
+
+    const fetchData = async () => {
+        if (city_id) {
+            const cityIdNumber = parseInt(city_id, 10); // Convert string to number
+            if (!isNaN(cityIdNumber)) {
+                const rs = await areas(cityIdNumber);
+                console.log("city areas -> ", rs);
+                setData(rs);
+            }
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [city_id])
+    return (
+        <div className='bg-gray-200'>
+            <div className='min-h-screen font-titillium'>
+                <div className='relative'>
+                    <div className='w-full h-screen relative'>
+                        <img className='w-full h-full' src={data?.state?.image} alt="jaipurWallpaper" />
+                        <div className='absolute top-0 left-0 w-full h-full bg-black/50'></div>
+                    </div>
+                    <div className='absolute top-32 left-0 flex justify-center flex-col items-center w-full'>
+                        <div className='text-center w-full flex flex-col gap-5 items-center justify-center'>
+                            <h1 className='md:text-4xl text-xl font-bold text-white md:w-1/2 md:px-0 px-5 '>Hassle Free Package Delivery Services in {data?.state.name}</h1>
+                            <p className='text-white lg:text-lg font-semibold md:w-1/2 md:px-0 px-5'>Book Porter for all your package delivery requirements by bike. Enjoy reliable and safe package delivery services in {data?.state.name}.</p>
+                            {/* <span className='text-white underline hover:font-bold cursor-pointer' >Know More &#8811;</span> */}
+                            <div className='w-full'>
+                                <Address_Information />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <Wheeler_Information />
+            </div>
+            <div>
+                <WhyChosse />
+            </div>
+            <div>
+                <Areas_serve data={data && data} />
+            </div>
+            <div>
+                <GetPhone />
+            </div>
+            <div>
+                <Other_services />
+            </div>
+            <div>
+                <Service_OverView data={data?.state || { name: '', image: '' }} />
+
+            </div>
+            <div>
+                <OurOtherServices />
+            </div>
+        </div>
+    )
+}
+
+export default Service_Information
