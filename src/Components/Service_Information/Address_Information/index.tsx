@@ -80,7 +80,7 @@ const Address_Information: React.FC = () => {
                         </div>
 
                         <div className='flex flex-col items-start justify-start'>
-                            <label htmlFor="phoneNumber" className=' text-sm'>Phone Number<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
+                            <label htmlFor="phoneNumber" className=' text-sm'>Sender Phone Number<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
                             <input
                                 className="border-none focus:outline-none focus:border-transparent text-sm"
                                 type="text"
@@ -97,7 +97,7 @@ const Address_Information: React.FC = () => {
                         </div>
 
                         <div className='flex flex-col items-start justify-start'>
-                            <label htmlFor="name" className=' text-sm'>Name<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
+                            <label htmlFor="name" className=' text-sm'>Sender Name<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
                             <input
                                 className="border-none text-sm focus:outline-none focus:border-transparent"
                                 type="text"

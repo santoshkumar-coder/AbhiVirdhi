@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { RxTriangleRight } from "react-icons/rx";
+import { addresses } from '../../../api_fetch/address';
 
 
 const OurOffices = () => {
+    const [data, setData] = useState();
+    const fetchData = async () => {
+        const rs = await addresses();
+        console.log(rs);
+
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
     return (
         <div className='bg-black font-titillium text-white flex flex-col items-center justify-center py-10'>
             <div className='flex flex-col items-center justify-center'>

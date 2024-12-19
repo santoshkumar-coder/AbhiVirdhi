@@ -15,7 +15,8 @@ interface VehicelsProps {
 
 interface VehicleInfo {
     name: string,
-    image: string
+    image: string,
+    id: string
 }
 
 const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) => {
@@ -23,8 +24,8 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
     const selector = useSelector((state: AppState) => state.select_city)
     const [data, setData] = useState<VehicleInfo[] | null>(null);
 
-    const handleEvent = (item: { name: string }) => {
-        navigate(`/service/${item.name}/${selector}/${city_id}`); 
+    const handleEvent = (item: { name: string, id: string }) => {
+        navigate(`/service/${item.name}/${item.id}/${selector}/${city_id}`);
     };
 
     const fetchData = async () => {
@@ -46,7 +47,7 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
                         <div
                             key={index}
                             className='w-48 h-60 flex flex-col items-center bg-blue-50 gap-5 hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out'
-                            onClick={() => handleEvent({ name: item.name })}
+                            onClick={() => handleEvent({ name: item.name, id: item.id })}
                         >
                             <div className='w-full h-[70%] flex items-center justify-center p-2 rounded-lg'>
                                 <img

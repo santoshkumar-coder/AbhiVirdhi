@@ -3,26 +3,37 @@ import footerLogo from '../../assests/logonew.png'
 import googlePlayStore from '../../assests/googlePlayStore.png'
 import appleStore from '../../assests/appstore.png'
 import { IoLogoInstagram } from "react-icons/io5";
+import { FaFacebookF } from "react-icons/fa";
 import { CiYoutube } from "react-icons/ci";
 import { FaLinkedinIn } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { footer } from '../../api_fetch/footer';
+import { social_media } from '../../api_fetch/SocialMedia';
 
 interface FooterApi {
     tagline: string,
     copyright: string
 }
+interface SocialMeadia {
+    url: string
+}
 
 const Footer = () => {
 
     const [data, setData] = useState<FooterApi | null>(null);
+    const [socialmeadia, setSocialMeadia] = useState<SocialMeadia[] | null>(null)
 
     const fetchData = async () => {
         const rs = await footer();
         setData(rs)
     }
+    const fetchSocialMeadia = async () => {
+        const rs = await social_media();
+        setSocialMeadia(rs)
+    }
     useEffect(() => {
         fetchData();
+        fetchSocialMeadia();
     }, [])
     return (
         <div className='w-full bg-black text-yellow-500  p-10 pb-2 font-titillium'>
@@ -62,6 +73,7 @@ const Footer = () => {
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Terms of Services</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Driver Partner Terms & Conditions</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Zero Tolerance Policy</p>
+                    <Link to="/insurance_FAQS" className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Insurance FAQs</Link>
                 </div>
                 <div className='w-1/5 px-5 flex flex-col gap-5'>
                     <img className='w-[90%]' src={googlePlayStore} alt="Google Play Store" />
@@ -70,9 +82,14 @@ const Footer = () => {
             </div>
             <div className='flex justify-between py-10'>
                 <div className='flex gap-5'>
-                    <IoLogoInstagram className='w-8 h-8 cursor-pointer bg-gray-800 hover:bg-gray-600 p-2 rounded-lg' />
-                    <CiYoutube className='w-8 h-8 cursor-pointer bg-gray-800 hover:bg-gray-600 p-2 rounded-lg' />
-                    <FaLinkedinIn className='w-8 h-8 cursor-pointer bg-gray-800 hover:bg-gray-600 p-2 rounded-lg' />
+                    {socialmeadia?.map((media, index) => (
+                        <Link key={index} to={media.url || '/'} target="_blank" rel="noopener noreferrer">
+                            {index === 0 && <IoLogoInstagram className='w-8 h-8 cursor-pointer bg-gray-800 hover:bg-gray-600 p-2 rounded-lg' />}
+                            {index === 1 && <FaFacebookF className='w-8 h-8 cursor-pointer bg-gray-800 hover:bg-gray-600 p-2 rounded-lg' />}
+                            {index === 3 && <CiYoutube className='w-8 h-8 cursor-pointer bg-gray-800 hover:bg-gray-600 p-2 rounded-lg' />}
+                            {index === 2 && <FaLinkedinIn className='w-8 h-8 cursor-pointer bg-gray-800 hover:bg-gray-600 p-2 rounded-lg' />}
+                        </Link>
+                    ))}
                 </div>
                 <div className='flex items-center gap-2 text-yellow-700'>
                     {/* <span className='text-3xl'>

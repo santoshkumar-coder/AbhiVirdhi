@@ -10,6 +10,7 @@ import Service_OverView from './Service_overview';
 import OurOtherServices from './OurOtherServices';
 import { areas } from '../../api_fetch/cities';
 import { useParams } from 'react-router-dom';
+import { vehicle_Info } from '../../api_fetch/vehicle_information';
 
 interface State {
     image: string,
@@ -26,20 +27,40 @@ interface ResponseData {
     data: DataItem[];
 }
 
+interface VehicelsInfo {
+    image: string,
+    name: string
+    starting_price: string
+    weight: string
+    width: string
+}
+
 const Service_Information: React.FC = () => {
     const [data, setData] = useState<ResponseData | null>(null);
-    const { city_id } = useParams<{ city_id: string }>();
+    const [vehicle_InfoData, setVehicleInfoData] = useState<VehicelsInfo[] | null>(null)
+    const { city_id, serviceId } = useParams<{ city_id: string, serviceId: string }>();
 
     const fetchData = async () => {
         if (city_id) {
             const cityIdNumber = parseInt(city_id, 10); // Convert string to number
             if (!isNaN(cityIdNumber)) {
                 const rs = await areas(cityIdNumber);
-                console.log("city areas -> ", rs);
                 setData(rs);
             }
         }
     }
+
+    const fetchVehicle_info = async () => {
+        if (serviceId) {
+            const rs = await vehicle_Info(serviceId);
+            console.log(rs);
+            setVehicleInfoData(rs);
+        }
+    }
+
+    useEffect(() => {
+        fetchVehicle_info()
+    }, [])
 
     useEffect(() => {
         fetchData();
@@ -65,7 +86,7 @@ const Service_Information: React.FC = () => {
                 </div>
             </div>
             <div>
-                <Wheeler_Information />
+                <Wheeler_Information data={vehicle_InfoData || []} />
             </div>
             <div>
                 <WhyChosse />

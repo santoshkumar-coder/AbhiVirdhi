@@ -12,10 +12,10 @@ const Add_vehicle_form = () => {
         setAge(event.target.value);
     };
     return (
-        <div className='bg-white/90 p-5 rounded-lg'>
+        <div className='bg-white/90 p-5 rounded-lg -mt-5'>
             <div className='space-y-5'>
-                <h1 className='text-center text-3xl font-bold'>Attach Vehicle Now</h1>
-                <form className='flex space-x-5'>
+                <h1 className='text-center md:text-3xl text-xl font-bold'>Attach Vehicle Now</h1>
+                <form className='md:flex md:space-x-5 space-y-5 md:space-y-0'>
                     <div>
                         <TextField
                             required

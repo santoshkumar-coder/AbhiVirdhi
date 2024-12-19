@@ -13,6 +13,7 @@ import { banners } from './api_fetch/banners';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from './redux/action';
 import Delivery_Partners from './Components/Delivery_Partners';
+import Insurance_FAQS from './Components/Insurance_FAQS';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -35,8 +36,9 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/service/:serviceInformation" element={<Service_Information />} />
-        <Route path="/service/:serviceInformation/:id/:city_id" element={<Service_Information />} />
+        <Route path="/service/:serviceInformation/:serviceId/:id/:city_id" element={<Service_Information />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/insurance_FAQS" element={<Insurance_FAQS />} />
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/delivery_Partners" element={<Delivery_Partners />} />
         <Route path="/about" element={<About />} />

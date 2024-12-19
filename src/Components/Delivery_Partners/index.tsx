@@ -8,11 +8,16 @@ import { Delviery_Partners } from '../../api_fetch/delivery_partners';
 import MakeLifeEasy from './Make_Life_Easy';
 import AskedQuestions from '../Home/AskedQuestions';
 import MultipleVehicles from './Multiple_vehicles';
+import Benifits from './Benifits';
+
+
 
 interface DeliveryPartners {
     making_life_easy_description: string;
     making_life_easy_image: string;
     own_multiple_vehicle_image: string;
+    porter_advantage: [],
+    benefits: []
 }
 
 const Delivery_Partners: React.FC = () => {
@@ -47,14 +52,14 @@ const Delivery_Partners: React.FC = () => {
                                 alt=""
                             />
                             {/* Center the Add_vehicle_form */}
-                            <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="absolute inset-0 flex md:items-center md:justify-center justify-center md:mt-auto mt-10 md:h-auto h-fit">
                                 <Add_vehicle_form />
                             </div>
                             <Add_vehicle />
                         </div>
                     </div>
                     <div>
-                        <Advantage />
+                        <Advantage data={data ? { Porter_advantage: data.porter_advantage } : undefined} />
                     </div>
                     <div>
                         <MakeLifeEasy
@@ -78,6 +83,11 @@ const Delivery_Partners: React.FC = () => {
                                     : undefined
                             }
                         />
+                    </div>
+                    <div>
+                        <Benifits data={data ? { Benifits: data.benefits } : undefined} />
+
+
                     </div>
                     <div>
                         <AskedQuestions />
