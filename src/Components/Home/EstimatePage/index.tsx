@@ -4,7 +4,7 @@ import twoWheeler from "../../../assests/twoWheeler.jpg"
 import threeWheeler from "../../../assests/threeWheeler.jpg"
 import miniTruck from "../../../assests/miniTruck.jpg"
 import largeTruck from "../../../assests/largeTruck.jpg"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/action';
 import { FaLongArrowAltRight } from 'react-icons/fa';
@@ -22,10 +22,9 @@ interface VehicleInfo {
 const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
     const [show, setShow] = useState<boolean>(false);
     const [selectedVeical, setSelectedVeical] = useState<string>('');
-    const [
-        
-        , setData] = useState<VehicleInfo[] | null>(null)
+    const [data, setData] = useState<VehicleInfo[] | null>(null)
     const navigate = useNavigate();
+    const { serviceInformation, serviceId } = useParams<{ serviceInformation: string, serviceId: string }>()
     useEffect(() => {
         setShow(true)
     }, [])
@@ -38,6 +37,12 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
             }, 700);
         }
     }
+
+    useEffect(() => {
+        if (serviceInformation || serviceId) {
+            setSelectedVeical(serviceInformation || "")
+        }
+    }, [serviceInformation, serviceId])
 
     const selector = useSelector((state: AppState) => state);
     const [formData, setFormData] = useState({ pickupAddress: '', dropAddress: '', phoneNumber: '', name: '', business: '' });
@@ -147,14 +152,16 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                     </div>
                         :
                         <div>
-                            <div className='px-5 select-none'>
-                                <div className='flex justify-between items-center border-2 border-gray-200 py-2 px-5 rounded-lg'>
-                                    <h1 className='font-semibold'>{selectedVeical}</h1>
-                                    <p className='font-semibold text-blue-500 text-sm cursor-pointer hover:text-blue-700'
-                                        onClick={() => setSelectedVeical('')}
-                                    >Change</p>
+                            {(!serviceInformation || !serviceId) &&
+                                <div className='px-5 select-none'>
+                                    <div className='flex justify-between items-center border-2 border-gray-200 py-2 px-5 rounded-lg'>
+                                        <h1 className='font-semibold'>{selectedVeical}</h1>
+                                        <p className='font-semibold text-blue-500 text-sm cursor-pointer hover:text-blue-700'
+                                            onClick={() => setSelectedVeical('')}
+                                        >Change</p>
+                                    </div>
                                 </div>
-                            </div>
+                            }
 
                             <form className='flex flex-col bg-white items-center px-5 py-8 rounded-r-xl rounded-bl-xl gap-3 w-auto'>
                                 <div className='flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg'>

@@ -32,6 +32,9 @@ const Delivery_Partners: React.FC = () => {
     };
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0
+        })
         fetch();
     }, []);
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import twoWheelerInformation from '../../../assests/twowheelerInformation.svg';
 import { IoBag } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
+import GetEstmate from '../../Home/EstimatePage';
 
 interface VehicelsInfo {
     image: string,
@@ -17,7 +18,7 @@ interface WheelerInformationProps {
 
 const Wheeler_Information: React.FC<WheelerInformationProps> = ({ data }) => {
     const params = useParams();
-
+    const [estimate, setEstimates] = useState<boolean>(false);
 
     return (
         <div className='font-titillium'>
@@ -35,9 +36,11 @@ const Wheeler_Information: React.FC<WheelerInformationProps> = ({ data }) => {
                             <span className='flex items-center gap-3 bg-blue-200 w-fit py-1 px-2 rounded-lg'><IoBag /> {data[0]?.weight}</span>
                             <h1 className='text-xl  my-2'>Starting from <span className='font-semibold text-2xl'>₹{data[0]?.starting_price}</span></h1>
                             <p className='text-justify text-gray-800'>Base fare is inclusive of 1.0 km distance & 25 minutes of order time. Pricing may vary basis locality. Please note, road tax, parking fee, etc, will be applicable over and above ride fare.</p>
-                            <h1 className='mt-5 underline text-blue-700 hover:text-blue-500 cursor-pointer select-none font-bold text-xl w-fit'>Know More</h1>
+                            <h1 className='mt-5 underline text-blue-700 hover:text-blue-500 cursor-pointer select-none font-bold text-xl w-fit' onClick={() => setEstimates(true)}>Know More</h1>
                         </div>
                     </div>
+                    {estimate &&
+                        <GetEstmate setEstimates={setEstimates} />}
                 </div>
                 :
                 <div>Loading...</div>

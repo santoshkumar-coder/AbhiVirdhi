@@ -6,7 +6,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaFacebookF } from "react-icons/fa";
 import { CiYoutube } from "react-icons/ci";
 import { FaLinkedinIn } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { footer } from '../../api_fetch/footer';
 import { social_media } from '../../api_fetch/SocialMedia';
 
@@ -21,7 +21,8 @@ interface SocialMeadia {
 const Footer = () => {
 
     const [data, setData] = useState<FooterApi | null>(null);
-    const [socialmeadia, setSocialMeadia] = useState<SocialMeadia[] | null>(null)
+    const [socialmeadia, setSocialMeadia] = useState<SocialMeadia[] | null>(null);
+    const navigate = useNavigate();
 
     const fetchData = async () => {
         const rs = await footer();
@@ -68,8 +69,10 @@ const Footer = () => {
                     <h1 className='text-xl font-bold'>
                         Support
                     </h1>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Contact Us</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Privacy Policy</p>
+                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'
+                        onClick={() => navigate("/support")}
+                    >Contact Us</p>
+                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'onClick={()=>navigate("/privacy_policy")}>Privacy Policy</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Terms of Services</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Driver Partner Terms & Conditions</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Zero Tolerance Policy</p>

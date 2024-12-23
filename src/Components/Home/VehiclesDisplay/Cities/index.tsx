@@ -17,7 +17,7 @@ interface Cities {
 
 const Cities: React.FC<CitiesProps> = ({ setCity, setCity_Id }) => {
     const [isVisible, setIsVisible] = useState(false);
-    const { city_id, serviceInformation } = useParams<{ city_id: string, serviceInformation: string }>();
+    const { city_id, serviceInformation, serviceId } = useParams<{ city_id: string, serviceInformation: string, serviceId: string }>();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
@@ -85,7 +85,7 @@ const Cities: React.FC<CitiesProps> = ({ setCity, setCity_Id }) => {
                                 })
                                 setCity_Id(item.id)
                                 if (city_id) {
-                                    navigate(`/service/${serviceInformation}/${item.name}/${item.id}`)
+                                    navigate(`/service/${serviceInformation}/${serviceId}/${item.name}/${item.id}`)
                                 }
                                 closeModal();
                             }}

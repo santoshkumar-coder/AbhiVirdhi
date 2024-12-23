@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CelebratingHomePage from './CelebratingHomePage'
 import OurServices from './OurServices'
 import OurInformation from './OurInformation'
@@ -8,7 +8,11 @@ import { AppState } from '../../redux/action'
 
 const Home: React.FC = () => {
     const selector = useSelector((state: AppState) => state.banners);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0
+        })
+    }, [])
     return (<>
         {Object.keys(selector).length !== 0 ? <>
             < CelebratingHomePage />

@@ -59,6 +59,12 @@ const Service_Information: React.FC = () => {
     }
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0
+        })
+    }, [])
+
+    useEffect(() => {
         fetchVehicle_info()
     }, [])
 

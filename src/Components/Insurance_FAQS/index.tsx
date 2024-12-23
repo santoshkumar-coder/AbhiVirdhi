@@ -21,6 +21,9 @@ const Insurance_FAQS = () => {
     useEffect(() => {
         fetchData();
     }, [])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div className='min-h-screen font-titillium'>
             <div>

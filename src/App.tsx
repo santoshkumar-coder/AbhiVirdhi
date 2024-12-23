@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from './redux/action';
 import Delivery_Partners from './Components/Delivery_Partners';
 import Insurance_FAQS from './Components/Insurance_FAQS';
+import Privacy_Policy from './Components/Privacy_Policy';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const App: React.FC = () => {
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/delivery_Partners" element={<Delivery_Partners />} />
         <Route path="/about" element={<About />} />
+        <Route path="/privacy_policy" element={<Privacy_Policy />} />
         <Route path='*' element={<div className='min-h-screen flex items-center justify-center font-bold text-xl font-titillium text-black bg-black/20'>404 | No Page Found</div>} />
       </Routes>
       <Footer />

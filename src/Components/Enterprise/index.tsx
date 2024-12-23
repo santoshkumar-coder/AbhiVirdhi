@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import banner from '../../assests/enterprice.jpg'
 import FillOutUserForm from './userForm';
 import About_enterprise from './information';
@@ -14,6 +14,9 @@ import { AppState } from '../../redux/action';
 
 const Enterprise = () => {
     const selector = useSelector((state: AppState) => state.banners);
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div>
             {Object.keys(selector).length !== 0 ?

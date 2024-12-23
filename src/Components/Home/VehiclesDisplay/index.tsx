@@ -42,7 +42,7 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
                 <Location setCity={setCity} />
             </div>
             <div className='flex items-center w-full justify-center gap-10'>
-                <div className='flex gap-10'>
+                <div className='flex flex-wrap gap-10'>
                     {data?.map((item, index) => (
                         <div
                             key={index}
