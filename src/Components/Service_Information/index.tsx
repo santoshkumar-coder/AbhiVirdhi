@@ -53,7 +53,6 @@ const Service_Information: React.FC = () => {
     const fetchVehicle_info = async () => {
         if (serviceId) {
             const rs = await vehicle_Info(serviceId);
-            console.log(rs);
             setVehicleInfoData(rs);
         }
     }

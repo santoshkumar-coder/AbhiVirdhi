@@ -72,8 +72,8 @@ const Footer = () => {
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'
                         onClick={() => navigate("/support")}
                     >Contact Us</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'onClick={()=>navigate("/privacy_policy")}>Privacy Policy</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Terms of Services</p>
+                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none' onClick={() => navigate("/privacy_policy")}>Privacy Policy</p>
+                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none' onClick={() => navigate("/terms_of_service")}>Terms of Services</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Driver Partner Terms & Conditions</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Zero Tolerance Policy</p>
                     <Link to="/insurance_FAQS" className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Insurance FAQs</Link>

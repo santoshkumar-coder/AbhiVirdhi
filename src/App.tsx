@@ -14,7 +14,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from './redux/action';
 import Delivery_Partners from './Components/Delivery_Partners';
 import Insurance_FAQS from './Components/Insurance_FAQS';
-//import Privacy_Policy from './Components/Privacy_Policy';
+import Privacy_Policy from './Components/Privacy_policy';
+import Terms_of_service from './Components/Terms_of_service';
+import Fare_estimate_details from './Components/Fare_estimate_details';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -43,7 +45,9 @@ const App: React.FC = () => {
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/delivery_Partners" element={<Delivery_Partners />} />
         <Route path="/about" element={<About />} />
-        {/*  <Route path="/privacy_policy" element={<Privacy_Policy />} />*/}
+        <Route path="/privacy_policy" element={<Privacy_Policy />} />
+        <Route path="/terms_of_service" element={<Terms_of_service />} />
+        <Route path="/fare_estimate_mob" element={<Fare_estimate_details />} />
         <Route path='*' element={<div className='min-h-screen flex items-center justify-center font-bold text-xl font-titillium text-black bg-black/20'>404 | No Page Found</div>} />
       </Routes>
       <Footer />
