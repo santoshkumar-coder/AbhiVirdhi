@@ -4,27 +4,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { logoDynamic } from "../../../api_fetch/logo";
 import { CiSearch } from "react-icons/ci";
+import { blog_category } from "../../../api_fetch/blogs_category";
 
 
 interface Logo {
     logo: string;
 }
-interface HeaderProp {
+interface Blog_category_data {
     name: string,
     id: string
 }
-interface Header {
-    category_data: HeaderProp[] | undefined,
-    setSelectedCategoryId: Function
-}
 
-const BlogHeader: React.FC<Header> = ({ category_data, setSelectedCategoryId }) => {
+const BlogHeader: React.FC = () => {
     const [logo, setLogo] = useState<Logo | null>(null);
+    const [category_data, setCategory_Data] = useState<Blog_category_data[] | null>(null)
+
+
     const navigate = useNavigate();
 
     const fetchData = async () => {
         try {
             const rs = await logoDynamic();
+            const rsCategory = await blog_category();
+            setCategory_Data(rsCategory);
             console.log(rs.logo);
             setLogo(rs);
         } catch (error) {
@@ -57,7 +59,9 @@ const BlogHeader: React.FC<Header> = ({ category_data, setSelectedCategoryId }) 
                 <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Life at Porter</Link>
                 <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Impact Tales</Link>
                 <Link to="/blog" className="hover:text-blue-800 cursor-pointer ">Enterprise Focus</Link>
-                <select name="" id="" className="cursor-pointer" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedCategoryId(e.target.value)}>
+                <select name="" id="" className="cursor-pointer" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    navigate(`/blog/${e.target.value}`)
+                }}>
                     <option value="" disabled selected>Select a category</option>
                     {category_data?.map((item, index) => {
                         return (

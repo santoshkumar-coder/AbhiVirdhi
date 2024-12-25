@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 interface Topic_Description {
     topic: string,
     description: string
@@ -9,16 +10,17 @@ interface Blog_fetch_data {
     images: string[],
     subtitle: string,
     title: string
-    topics_and_descriptions: Topic_Description[]
+    topics_and_descriptions: Topic_Description[],
+    id: string
 }
 interface ShowCardProps {
     item: Blog_fetch_data;
     index: number
 }
 const Show_Card: React.FC<ShowCardProps> = ({ item, index }) => {
-
+    const navigate = useNavigate();
     return (
-        <div className='flex items-center justify-center'>
+        <div className='flex items-center justify-center' onClick={() => navigate(`/blog/${item.category_name}/${item.id}`)}>
             {index % 2 === 0 ?
                 <div className='flex cursor-pointer items-center justify-between border border-black hover:border-gray-400 w-[70%] h-60 rounded-xl pl-10'>
                     <div className='w-[50%] pr-5'>

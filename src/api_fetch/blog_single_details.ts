@@ -1,9 +1,9 @@
 import axios from "axios";
 import { base_url } from "../base_url";
 
-export const blogs_dataBy_category = async (id?: string) => {
+export const blog_single_details = async (id?:string) => {
     try {
-        const rs = await axios(`${base_url}blogs/${id}`);
+        const rs = await axios(`${base_url}blog/${id}`);
         // console.log(rs.data.data);
         return rs.data.data
     } catch (error) {

@@ -19,11 +19,11 @@ import Terms_of_service from './Components/Terms_of_service';
 import Fare_estimate_details from './Components/Fare_estimate_details';
 import Blog from './Components/Blog';
 import BlogHeader from './Components/Blog/Blog_Header';
+import Single_blog_details from './Components/Blog/Single_blog_details';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const locaiton = useLocation();
-
 
   const all_banners = useSelector((state: AppState) => state.banners);
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
 
   return (
     <div className="">
-      {locaiton.pathname !== "/blog" ?
+      {locaiton.pathname.split("/")[1] !== "blog" ?
         <div>
           <Header />
           <Routes>
@@ -60,9 +60,11 @@ const App: React.FC = () => {
           </Routes>
         </div> :
         <div>
-          
+          <BlogHeader />
           <Routes>
             <Route path='/blog' element={<Blog />} />
+            <Route path='/blog/:categoryId' element={<Blog />} />
+            <Route path='/blog/:category_name/:singlePage_blog_id' element={<Single_blog_details />} />
           </Routes>
         </div>
       }
