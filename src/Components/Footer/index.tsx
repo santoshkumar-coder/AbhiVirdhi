@@ -49,7 +49,9 @@ const Footer = () => {
                     </h1>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>
                         <Link to="/about"> About Us </Link>
-
+                    </p>
+                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>
+                        <Link to="/blog"> Blog </Link>
                     </p>
 
                 </div>
