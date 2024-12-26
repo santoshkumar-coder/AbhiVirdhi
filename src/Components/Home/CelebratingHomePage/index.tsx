@@ -32,7 +32,7 @@ const CelebratingHomePage: React.FC = () => {
                         alt="celebrate"
                     />
                 </div>
-                <div className='absolute inset-0 text-white flex items-end justify-center md:max-h-72 max-h-60'>
+                <div className='absolute inset-0 text-white md:flex hidden items-end justify-center md:max-h-72 max-h-60'>
                     <button className='bg-white font-semibold text-gray-800 p-2 rounded-xl'>Ready our story</button>
                 </div>
             </div>

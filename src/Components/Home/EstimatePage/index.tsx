@@ -97,15 +97,20 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
         navigate(`/fare_estimate_mob?${params.toString()}`);
     }
     return (
-        <div className='fixed top-0 w-full font-titillium h-screen bg-black bg-opacity-80 z-20 flex justify-between items-center'
+        <div className='fixed top-0 w-full font-titillium h-screen bg-black bg-opacity-80 z-20 md:flex justify-between items-center'
             onClick={(e) => handleEstimateClose(e)}
         >
             <div
-                className={`w-1/4 h-screen bg-gray-200 text-gray-800 transform transition-all duration-700 ${show ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+                className={`relative md:w-1/4 md:h-screen h-1/3 bg-gray-200 text-gray-800 transform transition-all duration-700 ${show ? "md:translate-x-0 translate-y-0 opacity-100" : "md:-translate-x-full -translate-y-full opacity-0"
                     }`}
             >
+                <div className='absolute right-3 top-2 text-3xl bg-black text-white rounded-full flex justify-center items-center px-4 py-2'
+                    onClick={(e) => handleEstimateClose(e)}
+                >
+                    x
+                </div>
 
-                <div className='py-20 px-10'>
+                <div className='md:py-20 py-10 md:px-10 px-5'>
                     {!selectedVeical &&
                         <h1 className='text-4xl font-bold '>
                             Get an Estimate
@@ -136,10 +141,10 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                 </div>
             </div>
             <div
-                className={`w-2/5 h-screen bg-white transition-all duration-700 transform ${show ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+                className={`md:w-2/5 md:h-screen h-2/3 bg-white transition-all duration-700 transform ${show ? "md:translate-x-0 translate-y-0 opacity-100" : "md:translate-x-full translate-y-full opacity-0"
                     }`}
             >
-                <div className='py-20 px-3 '>
+                <div className='md:py-20 py-5 px-3 '>
                     {!selectedVeical ? <div>
                         {data?.map((item, index) => (
                             <div className='h-20 rounded-xl mt-5 flex border-2 border-gray-400 hover:border-blue-700 text-gray-800 hover:text-blue-500 cursor-pointer select-none px-2 items-center justify-between'
@@ -185,7 +190,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                         </div>
                     </div>
                         :
-                        <div>
+                        <div className='overflow-y-auto h-[60vh] md:h-auto'>
                             {(!serviceInformation || !serviceId) &&
                                 <div className='px-5 select-none'>
                                     <div className='flex justify-between items-center border-2 border-gray-200 py-2 px-5 rounded-lg'>

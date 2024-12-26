@@ -63,7 +63,7 @@ const Cities: React.FC<CitiesProps> = ({ setCity, setCity_Id }) => {
             onClick={handleBackgroundClick}
         >
             <div
-                className={`w-[75%] h-[99vh] bg-white overflow-y-auto px-16 relative transition-all duration-700 transform ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}
+                className={`md:w-[75%] w-[90%] md:h-[99vh] h-[80vh] bg-white overflow-y-auto md:px-16 px-5 relative transition-all duration-700 transform ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}
             >
                 <div className='absolute top-3 right-5'>
                     <ImCross
@@ -71,11 +71,11 @@ const Cities: React.FC<CitiesProps> = ({ setCity, setCity_Id }) => {
                         onClick={closeModal} // Close the modal with transition
                     />
                 </div>
-                <h1 className='font-titillium text-center font-bold text-4xl p-5 text-black'>
+                <h1 className='font-titillium text-center font-bold md:text-4xl text-xl p-5 text-black'>
                     Choose Your City
                 </h1>
 
-                <div className='flex flex-wrap gap-10 justify-center mt-10'>
+                <div className='flex flex-wrap md:gap-10 gap-5 justify-center mt-10'>
                     {data?.map((item, index) => (
                         <div key={index} className='flex flex-col justify-center items-center cursor-pointer hover:scale-150 trasition-all duration-700'
                             onClick={() => {
@@ -91,11 +91,11 @@ const Cities: React.FC<CitiesProps> = ({ setCity, setCity_Id }) => {
                             }}
                         >
                             <img
-                                className='w-24 h-24 rounded-xl bg-blue-100 object-cover'
+                                className='md:w-24 w-16 md:h-24 h-16 rounded-xl bg-blue-100 object-cover'
                                 src={item?.image}
                                 alt={item?.name}
                             />
-                            <h1>{item?.name}</h1>
+                            <h1 className='md:text-base text-xs'>{item?.name}</h1>
                         </div>
                     ))}
                 </div>

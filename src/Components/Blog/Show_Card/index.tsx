@@ -20,24 +20,24 @@ interface ShowCardProps {
 const Show_Card: React.FC<ShowCardProps> = ({ item, index }) => {
     const navigate = useNavigate();
     return (
-        <div className='flex items-center justify-center' onClick={() => navigate(`/blog/${item.category_name}/${item.id}`)}>
+        <div className='m-5 flex items-center justify-center' onClick={() => navigate(`/blog/${item.category_name}/${item.id}`)}>
             {index % 2 === 0 ?
-                <div className='flex cursor-pointer items-center justify-between border border-black hover:border-gray-400 w-[70%] h-60 rounded-xl pl-10'>
-                    <div className='w-[50%] pr-5'>
+                <div className='md:flex cursor-pointer items-center justify-between border border-black hover:border-gray-400 md:w-[70%] md:h-60 rounded-xl md:pl-10 md:p-0 p-5'>
+                    <div className='md:w-[50%] md:pr-5'>
                         <h1 className='text-lg text-gray-600 font-semibold'>{item.category_name}</h1>
                         <h1 className='text-xl font-semibold'>{item.subtitle}</h1>
                         <p className='text-lg text-gray-500 text-justify'>{item?.topics_and_descriptions && item.topics_and_descriptions[0].description.substring(0, 150)}...</p>
                     </div>
-                    <div className='w-[50%] h-full'>
-                        <img className='w-full h-full rounded-r-xl' src="https://blog.porter.in/wp-content/uploads/Porter-__-TyresnMore.webp" alt="porter" />
+                    <div className='md:w-[50%] md:h-full h-52 md:mt-0 mt-5'>
+                        <img className='w-full h-full md:rounded-r-xl rounded-xl md:rounded-none' src="https://blog.porter.in/wp-content/uploads/Porter-__-TyresnMore.webp" alt="porter" />
                     </div>
                 </div>
                 :
-                <div className='flex cursor-pointer items-center justify-between border border-black hover:border-gray-400 w-[70%] h-60 rounded-xl pr-10'>
-                    <div className='w-[50%] h-full'>
-                        <img className='w-full h-full rounded-l-xl' src="https://blog.porter.in/wp-content/uploads/Porter-__-TyresnMore.webp" alt="porter" />
+                <div className='md:flex cursor-pointer items-center justify-between border border-black hover:border-gray-400 md:w-[70%] md:h-60 rounded-xl md:pr-10 md:p-0 p-5'>
+                    <div className='md:w-[50%] md:h-full h-52'>
+                        <img className='w-full h-full md:rounded-l-xl rounded-xl md:rounded-none' src="https://blog.porter.in/wp-content/uploads/Porter-__-TyresnMore.webp" alt="porter" />
                     </div>
-                    <div className='w-[50%] pl-5'>
+                    <div className='md:w-[50%] md:pl-5 md:mt-0 mt-5'>
                         <h1 className='text-lg text-gray-600 font-semibold'>{item.category_name}</h1>
                         <h1 className='text-xl font-semibold'>{item.subtitle}</h1>
                         <p className='text-lg text-gray-500 text-justify'>{item?.topics_and_descriptions && item.topics_and_descriptions[0].description.substring(0, 150)}...</p>

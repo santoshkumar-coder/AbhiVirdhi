@@ -24,10 +24,10 @@ const AskedQuestions = () => {
         <div className='font-titillium my-10 flex flex-col items-center justify-center w-full'>
 
             <div className='flex flex-col items-center justify-center'>
-                <h1 className='font-bold text-3xl'>Frequently Asked Questions</h1>
-                <h2 className='text-lg mt-3 text-gray-600'>In case you have more questions, feel free to reach out to us.</h2>
+                <h1 className='font-bold md:text-3xl text-2xl'>Frequently Asked Questions</h1>
+                <h2 className='text-lg mt-3 text-gray-600 md:text-start text-center'>In case you have more questions, feel free to reach out to us.</h2>
             </div>
-            <div className='w-[80%] my-10'>
+            <div className='md:w-[80%] my-10 md:mx-0 mx-5'>
                 {data?.map((item, index) => {
                     return (
                         <div className='border-b-2 border-gray-200 mt-5 py-5' key={index}>
@@ -37,7 +37,7 @@ const AskedQuestions = () => {
                                     setShow((old) => showindex === index ? false : true)
                                 }}
                             >
-                                <h1 className='font-bold text-xl text-gray-600 select-none'>{item.question}</h1>
+                                <h1 className='font-bold text-xl text-gray-600 select-none md:w-auto w-[90%]'>{item.question}</h1>
                                 {show && showindex === index ? <VscTriangleUp className='w-5 h-5 text-gray-700' /> : <VscTriangleDown className='w-5 h-5 text-gray-700' />}
                             </div>
                             {show && showindex === index && <p className='select-none font-semibold my-3 ml-3 text-gray-600 text-justify'>{item.answer}</p>}

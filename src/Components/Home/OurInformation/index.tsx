@@ -23,15 +23,15 @@ const OurInformation = () => {
         fetchData();
     }, [])
     return (
-        <div className='bg-[linear-gradient(154.48deg,_#000,_#040a1a)] text-white p-20 pb-5 font-titillium'>
+        <div className='bg-[linear-gradient(154.48deg,_#000,_#040a1a)] text-white md:p-20 p-8 pb-5 font-titillium'>
             <div className='flex items-center justify-center'>
-                <h1 className='w-[70%] text-[2.5rem] text-center font-titillium font-[700] text-white/90'>And thanks to you, we are growing each & every day!</h1>
+                <h1 className='md:w-[70%] text-[1.2rem] md:text-[2.5rem] text-center font-titillium font-[700] text-white/90'>And thanks to you, we are growing each & every day!</h1>
             </div>
             <div className='my-10 flex items-center justify-center'>
-                <h1 className='w-[65%] text-center border-2 border-yellow-800 py-3 rounded-lg text-yellow-500 font-titillium text-lg'>🎉 Marhaba Dubai! We're now live & ready to take care of all your logisitical needs.</h1>
+                <h1 className='md:w-[65%] text-center border-2 border-yellow-800 py-3 rounded-lg text-yellow-500 font-titillium md:text-lg md:px-0 px-2'>🎉 Marhaba Dubai! We're now live & ready to take care of all your logisitical needs.</h1>
             </div>
             <div className=' flex justify-center items-center mt-20 font-titillium'>
-                <div className='flex  w-[83%] justify-between w-full'>
+                <div className='flex md:flex-nowrap flex-wrap w-[83%] justify-between w-full'>
                     <div className='font-[700] flex flex-col justify-center items-center'>
                         <h1 className='text-[2rem]'>20+</h1>
                         <h1 className='text-[1.5rem] text-gray-400'>Cities</h1>
@@ -76,7 +76,7 @@ const OurInformation = () => {
                 <div className='my-20 flex items-center justify-center'>
                     <div className='flex items-center justify-center gap-3'>
                         <img src={ourservices} alt="line" />
-                        <h1 className='uppercase'>SOME WORDS FROM OUR HAPPY CUSTOMERS!</h1>
+                        <h1 className='uppercase md:text-base text-sm md:text-start text-center'>SOME WORDS FROM OUR HAPPY CUSTOMERS!</h1>
                         <img src={ourservices} alt="line" />
                     </div>
                 </div>

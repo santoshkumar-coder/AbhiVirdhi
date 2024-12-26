@@ -37,13 +37,13 @@ const Footer = () => {
         fetchSocialMeadia();
     }, [])
     return (
-        <div className='w-full bg-black text-yellow-500  p-10 pb-2 font-titillium'>
-            <div className='flex'>
-                <div className='w-1/5 border-r-2 border-gray-800 pt-0'>
+        <div className='w-full bg-black text-yellow-500  md:p-10 p-5 pb-2 font-titillium'>
+            <div className='md:flex'>
+                <div className='md:w-1/5 md:block flex flex-col items-center justify-center md:border-r-2 border-gray-800 pt-0'>
                     <img className='w-[60%] h-auto ml-5' src={footerLogo} alt="footer" />
-                    <p className='text-2xl select-none'>{data?.tagline}</p>
+                    <p className='text-2xl select-none md:text-start text-center'>{data?.tagline}</p>
                 </div>
-                <div className='w-1/5 border-r-2 border-gray-800 px-5'>
+                <div className='md:w-1/5 border-r-2 border-gray-800 px-5 md:mt-0 mt-5'>
                     <h1 className='text-xl font-bold'>
                         Company
                     </h1>
@@ -55,7 +55,7 @@ const Footer = () => {
                     </p>
 
                 </div>
-                <div className='w-1/5 border-r-2 border-gray-800 px-5'>
+                <div className='md:w-1/5 border-r-2 border-gray-800 px-5'>
                     <h1 className='text-xl font-bold'>
                         Quick Links
                     </h1>
@@ -67,7 +67,7 @@ const Footer = () => {
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Mini Trucks</p>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Trucks</p>
                 </div>
-                <div className='w-1/5 border-r-2 border-gray-800 px-5'>
+                <div className='md:w-1/5 border-r-2 border-gray-800 px-5'>
                     <h1 className='text-xl font-bold'>
                         Support
                     </h1>
@@ -80,12 +80,12 @@ const Footer = () => {
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Zero Tolerance Policy</p>
                     <Link to="/insurance_FAQS" className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Insurance FAQs</Link>
                 </div>
-                <div className='w-1/5 px-5 flex flex-col gap-5'>
+                <div className='md:w-1/5 px-5 flex flex-col gap-5 md:mt-0 mt-5'>
                     <img className='w-[90%]' src={googlePlayStore} alt="Google Play Store" />
                     <img className='w-[90%]' src={appleStore} alt="Apple Store" />
                 </div>
             </div>
-            <div className='flex justify-between py-10'>
+            <div className='flex md:flex-row flex-col md:items-start items-center justify-between py-10'>
                 <div className='flex gap-5'>
                     {socialmeadia?.map((media, index) => (
                         <Link key={index} to={media.url || '/'} target="_blank" rel="noopener noreferrer">
@@ -96,7 +96,7 @@ const Footer = () => {
                         </Link>
                     ))}
                 </div>
-                <div className='flex items-center gap-2 text-yellow-700'>
+                <div className='flex items-center gap-2 text-yellow-700 md:mt-0 mt-5'>
                     {/* <span className='text-3xl'>
                         &#169;
                     </span> */}

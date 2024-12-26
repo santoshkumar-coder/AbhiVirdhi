@@ -19,7 +19,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     console.log(currentIndex);
 
     return (
-        <div className='relative w-full max-w-[80%] mx-auto overflow-hidden pb-20'>
+        <div className='relative w-full md:max-w-[80%] mx-auto overflow-hidden pb-20'>
             {items ? <>
                 <div className='mt-10 flex transition-transform duration-700 ease-in-out'
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}

@@ -29,7 +29,7 @@ const OurServices = () => {
                     <img src={ourServices} alt="services" />
                 </div>
             </div>
-            <div className='text-white ml-48 mr-32 py-10 flex gap-5 overflow-x-auto scrollbar-thin'>
+            <div className='text-white md:ml-48 ml-10 mr-10 md:mr-32 py-10 flex gap-5 overflow-x-auto scrollbar-thin'>
                 {data?.map((item, index) => {
                     return <div key={index} className='relative cursor-pointer bg-gradient-to-r from-[rgba(148,4,4,1)] via-[rgba(150,126,173,1)] to-[rgba(159,6,102,1)] rounded-3xl h-[16rem]'>
                         <h3 className='text-xs bg-[rgba(255,192,203,0.3)] font-semibold w-fit py-1 pl-7 pr-4 rounded-r-full mt-8'>{item.service_name}</h3>

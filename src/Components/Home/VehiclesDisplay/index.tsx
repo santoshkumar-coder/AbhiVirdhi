@@ -37,12 +37,12 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
     }, [])
 
     return (
-        <div className='bg-white h-88 -mt-20 relative z-10 w-[85%] border-2 border-gray-200 shadow-xl hover:shadow-xl transition-shadow duration-300 p-10 rounded-lg'>
+        <div className='bg-white h-88 md:-mt-20 mt-5 relative z-10 md:w-[85%] md:mx-0 mx-5 border-2 border-gray-200 shadow-xl hover:shadow-xl transition-shadow duration-300 p-10 md:rounded-lg rounded-3xl'>
             <div>
                 <Location setCity={setCity} />
             </div>
             <div className='flex items-center w-full justify-center gap-10'>
-                <div className='flex flex-wrap gap-10'>
+                <div className='flex flex-wrap justify-center  gap-10'>
                     {data?.map((item, index) => (
                         <div
                             key={index}
@@ -62,12 +62,23 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
                 </div>
                 {!data && <div>Loading...</div>}
                 <div
-                    className='bg-blue-700 text-white font-bold w-fit h-fit font-titillium text-lg p-2 rounded-xl hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out'
+                    className='md:block hidden bg-blue-700 text-white font-bold w-fit h-fit font-titillium text-lg p-2 rounded-xl hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out'
                     onClick={() => setEstimates(true)}
                 >
                     <FaArrowRight className='w-10 h-5' />
                 </div>
             </div>
+            <div className="md:hidden fixed bottom-10 left-1/2 transform -translate-x-1/2 font-bold font-titillium text-lg w-fit">
+                <div
+                    className="bg-blue-700/90 flex justify-between w-60 items-center text-white px-6 py-3 rounded-xl hover:cursor-pointer"
+                    onClick={() => setEstimates(true)}
+                >
+                    <p className="mr-2">Get an Estimate</p>
+                    <FaArrowRight className="w-5 h-5" />
+                </div>
+            </div>
+
+
         </div>
     );
 };
