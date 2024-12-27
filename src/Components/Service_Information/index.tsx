@@ -78,7 +78,7 @@ const Service_Information: React.FC = () => {
                         <img className='w-full h-full' src={data?.state?.image} alt="jaipurWallpaper" />
                         <div className='absolute top-0 left-0 w-full h-full bg-black/50'></div>
                     </div>
-                    <div className='absolute top-32 left-0 flex justify-center flex-col items-center w-full'>
+                    <div className='absolute md:top-32 top-10 left-0 flex justify-center flex-col items-center w-full'>
                         <div className='text-center w-full flex flex-col gap-5 items-center justify-center'>
                             <h1 className='md:text-4xl text-xl font-bold text-white md:w-1/2 md:px-0 px-5 '>Hassle Free Package Delivery Services in {data?.state.name}</h1>
                             <p className='text-white lg:text-lg font-semibold md:w-1/2 md:px-0 px-5'>Book Porter for all your package delivery requirements by bike. Enjoy reliable and safe package delivery services in {data?.state.name}.</p>

@@ -24,7 +24,7 @@ const Other_services = () => {
             <div>
                 <h1 className='text-xl font-bold'>Other Services to Choose From</h1>
             </div>
-            <div className='flex items-center justify-center gap-10 mt-10'>
+            <div className='md:flex md:space-y-0 space-y-5 items-center justify-center gap-10 mt-10'>
                 {data?.map((item, index) => (
                     <div className='text-center '>
                         {

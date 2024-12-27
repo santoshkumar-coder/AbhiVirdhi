@@ -24,7 +24,7 @@ const OurOtherServices: React.FC = () => {
 
     return (
         <div className='mt-5 font-titillium flex items-center justify-center'>
-            <div className='w-[80%]'>
+            <div className='md:w-[80%] md:px-0 px-5'>
                 <div>
                     <h1 className='text-2xl font-bold text-gray-800'>Choose from our services</h1>
                 </div>

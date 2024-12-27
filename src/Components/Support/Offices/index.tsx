@@ -32,8 +32,8 @@ const OurOffices = () => {
                 <h1 className='text-3xl font-bold text-white/90 uppercase'>Head Office</h1>
                 <p className='w-10 h-1 mt-1 bg-white/90 rounded-full' />
             </div>
-            <div className='w-[40%]'>
-                <div className='w-[60%]'>
+            <div className='md:w-[40%]'>
+                <div className='md:w-[60%] md:px-0 px-10'>
                     <h1 className='text-2xl font-semibold'>{data && data[0]?.headoffice_state_name}</h1>
                     <p className='my-5 text-justify'>{data && data[0]?.headoffice_address}</p>
                     <Link
@@ -51,10 +51,10 @@ const OurOffices = () => {
                 <h1 className='text-3xl font-bold text-white/90 uppercase'>REGIONAL OFFICES</h1>
                 <p className='w-10 h-1 mt-1 bg-white/90 rounded-full' />
             </div>
-            <div className='w-[60%] flex justify-between flex-wrap gap-16'>
+            <div className='md:w-[60%] flex justify-between flex-wrap gap-16 md:px-0 px-10'>
                 {data && data[0].addresses?.map((item, index) => {
                     return (
-                        <div className='w-[45%]'>
+                        <div className='md:w-[45%]'>
                             <h1 className='text-2xl font-semibold'>{item.state_name}</h1>
                             <p className='my-5 text-justify'>{item.address}</p>
                             <Link

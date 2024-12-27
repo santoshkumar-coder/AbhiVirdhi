@@ -27,13 +27,13 @@ const CustumorSupport = () => {
         <div className='font-titillium pt-10 flex items-center justify-center'>
             <div>
                 <div className='text-center'>
-                    <h1 className='text-5xl font-semibold uppercase'>Help Center</h1>
-                    <p className='mt-5 font-bold text-black/80'>Need assistance? We're happy to help, reach us out through the appropriate channels below.</p>
+                    <h1 className='md:text-5xl text-2xl font-semibold uppercase'>Help Center</h1>
+                    <p className='mt-5 font-bold md:text-base text-sm text-black/80'>Need assistance? We're happy to help, reach us out through the appropriate channels below.</p>
                 </div>
-                <div className='my-20  flex justify-center items-center'>
-                    <div className='w-[80%] flex justify-center items-center gap-3'>
-                        <div className='w-[50%]'>
-                            <div className='flex h-40 py-5 px-2 items-center rounded-tl-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[-4px]'>
+                <div className='md:my-20 my-10 flex justify-center items-center'>
+                    <div className='w-[80%] md:flex justify-center items-center gap-3'>
+                        <div className='md:w-[50%]'>
+                            <div className='flex md:h-40 h-fit py-5 px-2 items-center md:rounded-tl-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[-4px]'>
                                 <img className='w-24 h-24' src="https://cdn-icons-png.freepik.com/256/15388/15388817.png?semt=ais_hybrid" alt="" />
                                 <div>
                                     <h1 className='text-sm font-bold'>CUSTOMER SUPPORT</h1>
@@ -50,7 +50,7 @@ const CustumorSupport = () => {
 
 
 
-                            <div className='flex h-40 py-5 px-2 items-center rounded-bl-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[6px]'>
+                            <div className='flex md:h-40 h-fit py-5 px-2 items-center md:rounded-bl-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[6px]'>
                                 <img className='w-24 h-24 rounded-lg' src={enterpriceImage} alt="" />
                                 <div>
                                     <h1 className='text-sm font-bold'>ENTERPRISE SERVICES</h1>
@@ -60,8 +60,8 @@ const CustumorSupport = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-[50%] '>
-                            <div className='flex h-40 py-5 px-2 items-center rounded-tr-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[-4px]'>
+                        <div className='md:w-[50%] md:mt-0 mt-5'>
+                            <div className='flex md:h-40 h-fit py-5 px-2 items-center md:rounded-tr-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[-4px]'>
                                 <img className='w-24 h-24 rounded-lg' src={parkersMovers} alt="" />
                                 <div>
                                     <h1 className='text-sm font-bold'>PACKERS AND MOVERS</h1>
@@ -82,7 +82,7 @@ const CustumorSupport = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className='flex h-40 py-5 px-2 items-center rounded-br-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[6px]'>
+                            <div className='flex md:h-40 h-fit py-5 px-2 items-center md:rounded-br-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[6px]'>
                                 <img className='w-24 h-24 rounded-lg' src={drives} alt="" />
                                 <div>
                                     <h1 className='text-sm font-bold'>DRIVE WITH PORTER</h1>

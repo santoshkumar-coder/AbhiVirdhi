@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { FaAngleRight } from "react-icons/fa6";
-import twoWheeler from "../../../assests/twoWheeler.jpg"
-import threeWheeler from "../../../assests/threeWheeler.jpg"
-import miniTruck from "../../../assests/miniTruck.jpg"
-import largeTruck from "../../../assests/largeTruck.jpg"
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/action';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { vehicleTypes } from '../../../api_fetch/vehicleTypes';
+import { ImCross } from "react-icons/im";
 
 interface EstimateProps {
     setEstimates: (estmates: boolean) => void,
@@ -104,10 +101,10 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                 className={`relative md:w-1/4 md:h-screen h-1/3 bg-gray-200 text-gray-800 transform transition-all duration-700 ${show ? "md:translate-x-0 translate-y-0 opacity-100" : "md:-translate-x-full -translate-y-full opacity-0"
                     }`}
             >
-                <div className='absolute right-3 top-2 text-3xl bg-black text-white rounded-full flex justify-center items-center px-4 py-2'
+                <div className='absolute md:hidden right-3 top-2 text-3xl bg-black text-white rounded-full flex justify-center items-center p-3'
                     onClick={(e) => handleEstimateClose(e)}
                 >
-                    x
+                    <ImCross className='w-4 h-4'/>
                 </div>
 
                 <div className='md:py-20 py-10 md:px-10 px-5'>

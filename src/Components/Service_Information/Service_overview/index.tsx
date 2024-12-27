@@ -14,7 +14,7 @@ const Service_OverView: React.FC<ResponseData> = ({ data }) => {
     return (
         <div className='mt-5  font-titillium'>
             <div className='flex items-center justify-center'>
-                <div className='w-[80%]'>
+                <div className='md:w-[80%] md:px-0 px-5'>
                     <div>
                         <h1 className='text-2xl text-gray-800 font-bold'>Send Consignments By {params.serviceInformation} in {data?.name}</h1>
                     </div>

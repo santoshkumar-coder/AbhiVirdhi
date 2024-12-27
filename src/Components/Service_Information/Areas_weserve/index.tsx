@@ -43,7 +43,7 @@ const Areas_serve: React.FC<AreasServe> = ({ data }) => {
             <div>
                 <h1 className='text-xl font-bold'>Areas We Serve</h1>
             </div>
-            <div className='mt-10 w-[70%] flex flex-wrap items-center justify-center gap-3'>
+            <div className='mt-10 md:w-[70%] flex flex-wrap items-center md:justify-center gap-3'>
                 {data?.data?.map((item, index) => (
                     <div className='flex ml-6 items-center gap-2 leading-tight select-none' key={index}>
                         <FaCircleDot className='w-3 h-3 text-gray-400' />

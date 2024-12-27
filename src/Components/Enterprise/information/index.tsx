@@ -2,7 +2,7 @@ import React from 'react'
 
 const About_enterprise = () => {
     return (
-        <div className='absolute right-20 top-24 text-white text-end w-[40vw]'>
+        <div className='absolute right-20 top-24 text-white text-end w-[40vw] md:block hidden'>
             <div className='flex justify-end w-full'>
                 <h1 className='bg-gray-600 font-bold cursor-pointer rounded w-fit py-2 px-5'>PORTER ENTERPRISE</h1>
             </div>

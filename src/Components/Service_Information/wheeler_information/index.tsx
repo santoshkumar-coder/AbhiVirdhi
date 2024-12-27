@@ -25,12 +25,12 @@ const Wheeler_Information: React.FC<WheelerInformationProps> = ({ data }) => {
             {data ?
                 <div className='flex flex-col justify-center items-center py-10 px-5 '>
                     <h1 className='text-2xl font-semibold'>{params.serviceInformation} from Porter</h1>
-                    <div className='w-[70%] p-5 flex border-2 border-gray-300 my-10 bg-white rounded-lg gap-5' >
+                    <div className='md:w-[70%] p-5 md:flex border-2 border-gray-300 my-10 bg-white rounded-lg gap-5' >
                         <div>
                             <img className='w-[50rem] h-[15rem]' src={data[0]?.image} alt="twoWheelerInformation" />
                         </div>
                         <div>
-                            <h1 className='text-xl font-semibold'>
+                            <h1 className='text-xl font-semibold md:text-start text-end'>
                                 {data[0]?.name}
                             </h1>
                             <span className='flex items-center gap-3 bg-blue-200 w-fit py-1 px-2 rounded-lg'><IoBag /> {data[0]?.weight}</span>

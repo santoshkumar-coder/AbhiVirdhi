@@ -37,7 +37,7 @@ const Footer = () => {
         fetchSocialMeadia();
     }, [])
     return (
-        <div className='w-full bg-black text-yellow-500  md:p-10 p-5 pb-2 font-titillium'>
+        <div className='w-full bg-black text-yellow-500  md:p-10 p-5 md:pb-2 pb-20 font-titillium'>
             <div className='md:flex'>
                 <div className='md:w-1/5 md:block flex flex-col items-center justify-center md:border-r-2 border-gray-800 pt-0'>
                     <img className='w-[60%] h-auto ml-5' src={footerLogo} alt="footer" />
@@ -81,8 +81,8 @@ const Footer = () => {
                     <Link to="/insurance_FAQS" className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Insurance FAQs</Link>
                 </div>
                 <div className='md:w-1/5 px-5 flex flex-col gap-5 md:mt-0 mt-5'>
-                    <img className='w-[90%]' src={googlePlayStore} alt="Google Play Store" />
-                    <img className='w-[90%]' src={appleStore} alt="Apple Store" />
+                    <img className='md:w-[90%] w-[70%]' src={googlePlayStore} alt="Google Play Store" />
+                    <img className='md:w-[90%] w-[70%]' src={appleStore} alt="Apple Store" />
                 </div>
             </div>
             <div className='flex md:flex-row flex-col md:items-start items-center justify-between py-10'>

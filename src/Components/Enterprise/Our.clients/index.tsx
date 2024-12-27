@@ -34,7 +34,7 @@ const OurCients = () => {
                     {images.map((image, index) => (
                         <div
                             key={index}
-                            className=" w-60 mx-4 flex justify-center items-center"
+                            className=" md:w-60 w-40 mx-4 flex justify-center items-center"
                         >
                             <img
                                 src={image}

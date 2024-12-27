@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { VscTriangleDown } from "react-icons/vsc";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
@@ -8,7 +8,8 @@ import { AppState } from '../../../redux/action';
 import Cities from '../../Home/VehiclesDisplay/Cities';
 
 const Address_Information: React.FC = () => {
-    const params = useParams();
+    const { serviceId, serviceInformation } = useParams<{ serviceInformation: string, serviceId: string }>();
+    const navigate = useNavigate();
     const selector = useSelector((state: AppState) => state);
     const [city, setCity] = useState<boolean>(false);
     const [city_id, setCity_Id] = useState<number>(-1);
@@ -31,10 +32,33 @@ const Address_Information: React.FC = () => {
         setTouched({ ...touched, [field]: true });
     };
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const params = new URLSearchParams({
+            brand: 'porter',
+            customer_mobile: formData.phoneNumber,
+            customer_name: formData.name,
+            frequency: formData.business,
+            from_address_landmark: formData.pickupAddress,
+            from_address_lat: '28.637189',
+            from_address_long: '77.2756522',
+            geo_region_id: '2',
+            to_address_landmark: formData.dropAddress,
+            to_address_lat: '28.6505331',
+            to_address_long: '77.23033699999999',
+            vehical_info: serviceInformation || "",
+            vehical_id: serviceId || ""
+            // fare_estimate_token: 'your_fare_estimate_token',
+        });
+
+        navigate(`/fare_estimate_mob?${params.toString()}`);
+    }
+
     return (
         <div className='w-full font-titillium'>
             <div className='flex flex-col justify-center items-center'>
-                <div>
+                <div className='md:w-auto w-[80%]'>
                     <div
                         className='flex items-center bg-white py-4 mb-1 px-3 gap-2 w-fit rounded-t-xl cursor-pointer'
                         onClick={() => setCity(true)}
@@ -44,11 +68,13 @@ const Address_Information: React.FC = () => {
                         <VscTriangleDown />
                     </div>
 
-                    <form className='md:flex bg-white items-center px-5 py-8 rounded-r-xl rounded-bl-xl gap-3 w-auto'>
+                    <form
+                        onSubmit={(e) => handleSubmit(e)}
+                        className='md:flex md:w-auto w-full bg-white items-center px-5 py-8 rounded-r-xl rounded-bl-xl gap-3 w-auto'>
                         <div className='flex flex-col items-start justify-start'>
                             <label htmlFor="pickupaddress" className=' text-sm'>Pickup Address<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
                             <input
-                                className="border-none focus:outline-none focus:border-transparent text-sm"
+                                className="border-none focus:outline-none focus:border-transparent text-sm md:w-auto w-full"
                                 type="text"
                                 name="pickupAddress"
                                 value={formData.pickupAddress}
@@ -65,7 +91,7 @@ const Address_Information: React.FC = () => {
                         <div className='flex flex-col items-start justify-start'>
                             <label htmlFor="dropaddress" className=' text-sm'>Drop Address<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
                             <input
-                                className="border-none focus:outline-none focus:border-transparent text-sm"
+                                className="border-none focus:outline-none focus:border-transparent text-sm md:w-auto w-full"
                                 type="text"
                                 name="dropAddress"
                                 value={formData.dropAddress}
@@ -82,7 +108,7 @@ const Address_Information: React.FC = () => {
                         <div className='flex flex-col items-start justify-start'>
                             <label htmlFor="phoneNumber" className=' text-sm'>Sender Phone Number<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
                             <input
-                                className="border-none focus:outline-none focus:border-transparent text-sm"
+                                className="border-none focus:outline-none focus:border-transparent text-sm md:w-auto w-full"
                                 type="text"
                                 name="phoneNumber"
                                 value={formData.phoneNumber}
@@ -99,7 +125,7 @@ const Address_Information: React.FC = () => {
                         <div className='flex flex-col items-start justify-start'>
                             <label htmlFor="name" className=' text-sm'>Sender Name<span className="text-red-500 ml-1 -mt-2 font-bold text-lg">*</span></label>
                             <input
-                                className="border-none text-sm focus:outline-none focus:border-transparent"
+                                className="border-none text-sm focus:outline-none focus:border-transparent md:w-auto w-full"
                                 type="text"
                                 name="name"
                                 value={formData.name}
@@ -113,7 +139,7 @@ const Address_Information: React.FC = () => {
                             )}
                         </div>
 
-                        <div className='relative'>
+                        <div className='relative md:mt-0 mt-3'>
                             <div className='flex flex-col items-start justify-start cursor-pointer'
                                 onClick={() => setSelectBusinessDrop(!selectBusinessDrop)}
                             >
@@ -150,10 +176,14 @@ const Address_Information: React.FC = () => {
                             }
                         </div>
 
-                        <div className='flex items-center gap-10 bg-blue-600 select-none cursor-pointer p-3 rounded-lg text-white hover:text-white/80 hover:bg-blue-800 ml-3 text-sm hover:scale-105 trasition-all ease-in duration-300'>
+                        <button
+                            disabled={!formData.business && !formData.dropAddress && !formData.name && !formData.phoneNumber && !formData.pickupAddress}
+                            className={`
+                                ${(formData.business && formData.dropAddress && formData.name && formData.phoneNumber && formData.pickupAddress) ? "hover:text-white/80 bg-blue-600 hover:bg-blue-800 hover:scale-105 trasition-all ease-in duration-300" : "bg-gray-400"}
+                            flex justify-between md:mt-0 mt-10 items-center gap-10 bg-blue-600 select-none cursor-pointer p-3 rounded-lg text-white   ml-3 text-sm `}>
                             <span>Get an estimate</span>
                             <span><FaLongArrowAltRight /></span>
-                        </div>
+                        </button>
                     </form>
                 </div>
             </div >
