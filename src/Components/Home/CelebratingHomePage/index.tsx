@@ -17,7 +17,7 @@ const CelebratingHomePage: React.FC = () => {
     return (
         <div>
             <div className="relative text-center">
-                <div className=' w-screen h-screen bg-[#b1d3e5]'>
+                <div>
                     <img
                         alt="10-year logo"
                         sizes="100vw"
@@ -26,8 +26,9 @@ const CelebratingHomePage: React.FC = () => {
                         // src='https://img.freepik.com/premium-photo/red-toy-car-with-box-back-it_950347-2193.jpg'
                         // src='https://static.vecteezy.com/system/resources/thumbnails/046/960/165/small_2x/3d-render-of-brown-cardboard-boxes-parcel-with-truck-for-mock-up-and-creative-design-shopping-online-concept-online-delivery-concept-with-pastel-background-photo.jpeg'
                         // src="https://www.shutterstock.com/image-vector/white-truck-box-path-tracking-600nw-2490530993.jpg"
-                        className="md:block hidden"
+                        className="md:block hidden w-screen h-screen"
                     />
+                    <div className='md:hidden block w-screen h-screen bg-[#b1d3e5]'></div>
                 </div>
                 {/* <div className="absolute inset-0 flex items-center justify-center max-h-64">
                     <img
@@ -46,11 +47,13 @@ const CelebratingHomePage: React.FC = () => {
                     <Cities setCity={setCity} setCity_Id={setCity_Id} />
                 }
             </div>
-            {estimates &&
+            {
+                estimates &&
                 <div>
                     <GetEstmate setEstimates={setEstimates} />
-                </div>}
-        </div>
+                </div>
+            }
+        </div >
     )
 }
 
