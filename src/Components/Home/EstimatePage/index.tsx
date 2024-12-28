@@ -101,10 +101,10 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                 className={`relative md:w-1/4 md:h-screen h-1/3 bg-gray-200 text-gray-800 transform transition-all duration-700 ${show ? "md:translate-x-0 translate-y-0 opacity-100" : "md:-translate-x-full -translate-y-full opacity-0"
                     }`}
             >
-                <div className='absolute md:hidden right-3 top-2 text-3xl bg-black text-white rounded-full flex justify-center items-center p-3'
+                <div className='absolute md:hidden right-3 top-2 text-3xl bg-black text-white rounded-full flex justify-center items-center px-2'
                     onClick={(e) => handleEstimateClose(e)}
                 >
-                    <ImCross className='w-4 h-4'/>
+                    <p className='text-3xl -mt-1'  onClick={(e) => handleEstimateClose(e)}>x</p>
                 </div>
 
                 <div className='md:py-20 py-10 md:px-10 px-5'>

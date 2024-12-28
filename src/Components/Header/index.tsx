@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TbMenu } from "react-icons/tb";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { logoDynamic } from '../../api_fetch/logo';
+import { MdSupportAgent } from "react-icons/md";
 
 interface Logo {
     logo: string;
@@ -28,7 +29,7 @@ const Header: React.FC = () => {
 
     return (
         <div>
-           <header className="border-b-2 border-gray-200 max-h-20 flex lg:justify-around justify-between items-center sticky top-0 z-20 bg-white">
+            <header className="border-b-2 border-gray-200 max-h-20 flex lg:justify-around justify-between items-center sticky top-0 z-20 bg-white">
                 <div>
                     {logo?.logo ? (
                         <img
@@ -46,9 +47,13 @@ const Header: React.FC = () => {
                 <div className="lg:flex hidden gap-5 font-semibold">
                     <Link to="/enterprise" className="hover:text-blue-800 cursor-pointer">For Enterprise</Link>
                     <Link to="/delivery_Partners" className="hover:text-blue-800 cursor-pointer">Delivery Partners</Link>
+                    <Link to="/about" className="hover:text-blue-800 cursor-pointer">About</Link>
+                    <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Blogs</Link>
                 </div>
                 <div className="lg:block hidden">
-                    <Link to="/support" className="font-semibold hover:text-blue-800 cursor-pointer">Support</Link>
+                    <Link to="/support" className="font-semibold hover:text-blue-800 cursor-pointer">
+                        <MdSupportAgent className='w-8 h-8' />
+                    </Link>
                 </div>
                 <div className="lg:hidden block mr-5">
                     <TbMenu onClick={() => setShowHeaderMenu(true)} className="font-bold text-3xl text-black hover:text-black/80 cursor-pointer" />

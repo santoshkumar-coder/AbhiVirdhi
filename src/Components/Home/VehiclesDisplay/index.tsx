@@ -37,16 +37,18 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
     }, [])
 
     return (
-        <div className='bg-white h-88 md:-mt-20 mt-5 relative z-10 md:w-[85%] md:mx-0 mx-5 border-2 border-gray-200 shadow-xl hover:shadow-xl transition-shadow duration-300 p-10 md:rounded-lg rounded-3xl'>
+        <div className='bg-[#cbe3f1]/80
+        shadow-[0_4px_8px_rgba(0,0,0,0.5),0_-4px_8px_rgba(0,0,0,0.2)]
+        h-fit relative z-10 md:w-[60%] md:mx-0 mx-5 border-2 border-gray-200 shadow-xl hover:shadow-xl transition-shadow duration-300 md:p-8 p-5 md:rounded-lg rounded-3xl'>
             <div>
                 <Location setCity={setCity} />
             </div>
-            <div className='flex items-center w-full justify-center gap-10'>
-                <div className='flex flex-wrap justify-center  gap-10'>
+            <div className='flex items-center w-full justify-center -mt-5'>
+                <div className='flex flex-wrap justify-center md:gap-10 gap-5'>
                     {data?.map((item, index) => (
                         <div
                             key={index}
-                            className='w-48 h-60 flex flex-col items-center bg-blue-50 gap-5 hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out'
+                            className='md:w-40 md:h-40 w-32 h-32 flex flex-col items-center bg-white/80 md:rounded-tl-[3rem] rounded-tl-[2rem] md:rounded-br-[3rem] rounded-br-[2rem] p-5 hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out'
                             onClick={() => handleEvent({ name: item.name, id: item.id })}
                         >
                             <div className='w-full h-[70%] flex items-center justify-center p-2 rounded-lg'>
@@ -56,7 +58,7 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
                                     alt={item.name}
                                 />
                             </div>
-                            <h1 className="capitalize">{item?.name?.toLowerCase()}</h1>
+                            <h1 className="capitalize text-xs md:text-base">{item?.name?.toLowerCase()}</h1>
                         </div>
                     ))}
                 </div>

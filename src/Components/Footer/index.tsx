@@ -37,55 +37,55 @@ const Footer = () => {
         fetchSocialMeadia();
     }, [])
     return (
-        <div className='w-full bg-black text-yellow-500  md:p-10 p-5 md:pb-2 pb-20 font-titillium'>
+        <div className='w-full bg-[#b1d3e5] text-black/90  md:p-10 p-5 md:pb-2 pb-20 font-titillium'>
             <div className='md:flex'>
-                <div className='md:w-1/5 md:block flex flex-col items-center justify-center md:border-r-2 border-gray-800 pt-0'>
+                <div className='md:w-1/5 md:block flex flex-col items-center justify-center md:border-r-2 border-gray-300 pt-0'>
                     <img className='w-[60%] h-auto ml-5' src={footerLogo} alt="footer" />
                     <p className='text-2xl select-none md:text-start text-center'>{data?.tagline}</p>
                 </div>
-                <div className='md:w-1/5 border-r-2 border-gray-800 px-5 md:mt-0 mt-5'>
-                    <h1 className='md:text-xl text-2xl text-yellow-200 font-bold'>
+                <div className='md:w-1/5 border-r-2 border-gray-300 px-5 md:mt-0 mt-5'>
+                    <h1 className='md:text-xl text-2xl text-black font-bold'>
                         Company
                     </h1>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>
                         <Link to="/about"> About Us </Link>
                     </p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>
                         <Link to="/blog"> Blog </Link>
                     </p>
 
                 </div>
-                <div className='md:w-1/5 border-r-2 border-gray-800 px-5'>
-                    <h1 className='md:text-xl text-2xl text-yellow-200 font-bold'>
+                <div className='md:w-1/5 border-r-2 border-gray-300 px-5'>
+                    <h1 className='md:text-xl text-2xl text-black font-bold'>
                         Quick Links
                     </h1>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Services</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Tools</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Courier</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Two Wheelers</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Three Wheelers</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Mini Trucks</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Trucks</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Services</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Tools</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Courier</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Two Wheelers</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Three Wheelers</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Mini Trucks</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Trucks</p>
                 </div>
-                <div className='md:w-1/5 border-r-2 border-gray-800 px-5'>
-                    <h1 className='md:text-xl text-2xl text-yellow-200 font-bold'>
+                <div className='md:w-1/5 border-r-2 border-gray-300 px-5'>
+                    <h1 className='md:text-xl text-2xl text-black font-bold'>
                         Support
                     </h1>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'
                         onClick={() => navigate("/support")}
                     >Contact Us</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none' onClick={() => navigate("/privacy_policy")}>Privacy Policy</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none' onClick={() => navigate("/terms_of_service")}>Terms of Services</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Driver Partner Terms & Conditions</p>
-                    <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Zero Tolerance Policy</p>
-                    <Link to="/insurance_FAQS" className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Insurance FAQs</Link>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none' onClick={() => navigate("/privacy_policy")}>Privacy Policy</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none' onClick={() => navigate("/terms_of_service")}>Terms of Services</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Driver Partner Terms & Conditions</p>
+                    <p className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Zero Tolerance Policy</p>
+                    <Link to="/insurance_FAQS" className='my-5 text-gray-800 hover:text-black cursor-pointer select-none'>Insurance FAQs</Link>
                 </div>
                 <div className='md:w-1/5 px-5 flex flex-col gap-5 md:mt-0 mt-5'>
                     <img className='md:w-[90%] w-[70%]' src={googlePlayStore} alt="Google Play Store" />
                     <img className='md:w-[90%] w-[70%]' src={appleStore} alt="Apple Store" />
                 </div>
             </div>
-            <div className='flex md:flex-row flex-col md:items-start items-center justify-between py-10'>
+            <div className='flex md:flex-row flex-col md:items-start text-white items-center justify-between py-10'>
                 <div className='flex gap-5'>
                     {socialmeadia?.map((media, index) => (
                         <Link key={index} to={media.url || '/'} target="_blank" rel="noopener noreferrer">
@@ -96,7 +96,7 @@ const Footer = () => {
                         </Link>
                     ))}
                 </div>
-                <div className='flex items-center gap-2 text-yellow-700 md:mt-0 mt-5'>
+                <div className='flex items-center gap-2 text-gray-700 md:mt-0 mt-5'>
                     {/* <span className='text-3xl'>
                         &#169;
                     </span> */}
