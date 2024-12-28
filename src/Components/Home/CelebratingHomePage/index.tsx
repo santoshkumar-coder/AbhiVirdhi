@@ -44,10 +44,10 @@ const CelebratingHomePage: React.FC = () => {
                     <Cities setCity={setCity} setCity_Id={setCity_Id} />
                 }
             </div>
-            {estimates &&
+            {/* {estimates &&
                 <div>
                     <GetEstmate setEstimates={setEstimates} />
-                </div>}
+                </div>} */}
         </div>
     )
 }

@@ -61,12 +61,12 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
                     ))}
                 </div>
                 {!data && <div>Loading...</div>}
-                <div
+                {/* <div
                     className='md:block hidden bg-blue-700 text-white font-bold w-fit h-fit font-titillium text-lg p-2 rounded-xl hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out'
                     onClick={() => setEstimates(true)}
                 >
                     <FaArrowRight className='w-10 h-5' />
-                </div>
+                </div> */}
             </div>
             <div className="md:hidden fixed bottom-10 left-1/2 transform -translate-x-1/2 font-bold font-titillium text-lg w-fit">
                 <div
