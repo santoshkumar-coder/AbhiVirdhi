@@ -14,10 +14,10 @@ const Benifits: React.FC<Benifits_prop> = ({ data }) => {
     return (
         <div className='md:p-10 p-5'>
             <h1 className='text-center font-bold text-2xl md:p-10 py-10'>ADDITIONAL BENEFITS</h1>
-            <div className="md:flex items-center justify-center gap-5">
+            <div className="flex lg:flex-nowrap flex-wrap items-center justify-center gap-5">
                 {data?.Benifits.map((item, index) => {
                     return (
-                        <div key={index} className="flex flex-col w-full md:mt-auto mt-10 md:w-1/4 h-72 items-center max-w-sm p-3 bg-white rounded-lg shadow-[0_4px_8px_rgba(0,0,0,0.5),0_-4px_8px_rgba(0,0,0,0.2)]">
+                        <div key={index} className="flex flex-col w-full md:mt-auto mt-10 md:w-1/4 h-80 items-center max-w-sm p-3 bg-white rounded-lg shadow-[0_4px_8px_rgba(0,0,0,0.5),0_-4px_8px_rgba(0,0,0,0.2)]">
                             <img
                                 src={item.image}
                                 alt="Card Image"

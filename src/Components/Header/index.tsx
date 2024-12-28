@@ -84,9 +84,9 @@ const HeaderMenu: React.FC<HeaderMenuProps> = ({ setShowHeaderMenu, logo, showHe
         }
     }, [showHeaderMenue])
     return (
-        <div className={`absolute top-0 h-screen w-screen bg-blue-800/80 z-20 transition-all duration-500 ${show ? "opacity-100" : "opacity-0"}`} onClick={(e) => handleClick(e)}>
+        <div className={`fixed top-0 h-screen w-screen bg-blue-800/70 z-20 transition-all duration-500 ${show ? "opacity-100" : "opacity-0"}`} onClick={(e) => handleClick(e)}>
             <div
-                className={`fixed top-0 left-0 w-1/2 h-full bg-blue-500 z-20 transition-all duration-700 ${show ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-0 left-0 w-1/2 h-full bg-blue-400 z-20 transition-all duration-700 ${show ? "translate-x-0" : "-translate-x-full"
                     }`}
             >
 

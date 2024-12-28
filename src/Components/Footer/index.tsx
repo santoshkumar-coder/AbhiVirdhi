@@ -44,7 +44,7 @@ const Footer = () => {
                     <p className='text-2xl select-none md:text-start text-center'>{data?.tagline}</p>
                 </div>
                 <div className='md:w-1/5 border-r-2 border-gray-800 px-5 md:mt-0 mt-5'>
-                    <h1 className='text-xl font-bold'>
+                    <h1 className='md:text-xl text-2xl text-yellow-200 font-bold'>
                         Company
                     </h1>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>
@@ -56,7 +56,7 @@ const Footer = () => {
 
                 </div>
                 <div className='md:w-1/5 border-r-2 border-gray-800 px-5'>
-                    <h1 className='text-xl font-bold'>
+                    <h1 className='md:text-xl text-2xl text-yellow-200 font-bold'>
                         Quick Links
                     </h1>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Services</p>
@@ -68,7 +68,7 @@ const Footer = () => {
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'>Trucks</p>
                 </div>
                 <div className='md:w-1/5 border-r-2 border-gray-800 px-5'>
-                    <h1 className='text-xl font-bold'>
+                    <h1 className='md:text-xl text-2xl text-yellow-200 font-bold'>
                         Support
                     </h1>
                     <p className='my-5 text-yellow-400 hover:text-yellow-800 cursor-pointer select-none'
