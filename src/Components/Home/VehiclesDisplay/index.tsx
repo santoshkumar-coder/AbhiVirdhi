@@ -37,7 +37,7 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
     }, [])
 
     return (
-        <div className='bg-[#cbe3f1]/80
+        <div className='bg-[#cbe3f1]/60
         shadow-[0_4px_8px_rgba(0,0,0,0.5),0_-4px_8px_rgba(0,0,0,0.2)]
         h-fit relative z-10 md:w-[60%] md:mx-0 mx-5 border-2 border-gray-200 shadow-xl hover:shadow-xl transition-shadow duration-300 md:p-8 p-5 md:rounded-lg rounded-3xl'>
             <div>

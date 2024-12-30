@@ -11,7 +11,7 @@ const FillOutUserForm = () => {
                 <div className='flex items-center rounded-md gap-4 border-2 border-gray-400 px-2 py-3 mt-5'>
                     <label htmlFor=""><FaUser /></label>
                     <input
-                        className="border-none bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+                        className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
                         type="text"
                         placeholder="Enter your Name"
                         aria-label="Name"
@@ -24,7 +24,7 @@ const FillOutUserForm = () => {
                         </svg>
                     </label>
                     <input
-                        className="border-none bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+                        className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
                         type="text"
                         placeholder="Enter your Company Name"
                         aria-label="Name"
@@ -33,7 +33,7 @@ const FillOutUserForm = () => {
                 <div className='flex items-center  rounded-md  gap-4 border-2 border-gray-400 px-2 py-3 mt-5'>
                     <label htmlFor=""><IoCallSharp /></label>
                     <input
-                        className="border-none bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+                        className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
                         type="text"
                         placeholder="Enter your Phone Number"
                         aria-label="Name"
@@ -42,7 +42,7 @@ const FillOutUserForm = () => {
                 <div className='flex items-center gap-4  rounded-md  border-2 border-gray-400 px-2 py-3 mt-5'>
                     <label htmlFor=""><IoIosMailOpen /></label>
                     <input
-                        className="border-none bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+                        className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
                         type="text"
                         placeholder="Enter your Email ID"
                         aria-label="Name"

@@ -29,9 +29,9 @@ const OurInformation = () => {
             <div className='flex items-center justify-center'>
                 <h1 className='md:w-[70%] text-[1.2rem] md:text-[2.5rem] text-center font-titillium font-[700] text-black/80'>And thanks to you, we are growing each & every day!</h1>
             </div>
-            <div className='my-10 flex items-center justify-center'>
+            {/* <div className='my-10 flex items-center justify-center'>
                 <h1 className='md:w-[65%] text-center border-2 border-yellow-800 py-3 rounded-lg text-yellow-800 font-titillium md:text-lg md:px-0 px-2'>🎉 Marhaba Dubai! We're now live & ready to take care of all your logisitical needs.</h1>
-            </div>
+            </div> */}
             <div className=' flex justify-center items-center mt-20 font-titillium'>
                 <div className='flex md:flex-nowrap flex-wrap w-[83%] justify-between w-full'>
                     <div className='font-[700] flex flex-col justify-center items-center'>
