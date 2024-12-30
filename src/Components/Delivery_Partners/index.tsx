@@ -45,8 +45,9 @@ const Delivery_Partners: React.FC = () => {
                     <div className="h-screen">
                         <div className="relative h-[80%]">
                             <img
-                                className="w-full h-full object-cover transform scale-x-[-1]"
-                                src={selector.delivery_banner}
+                                className="w-full h-full object-cover "
+                                // src={selector.delivery_banner}
+                                src={"https://plus.unsplash.com/premium_photo-1661342486992-2a08d4b466ef?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZGVsaXZlcnl8ZW58MHx8MHx8fDA%3D"}
                                 style={{
                                     backgroundPosition: '100%',
                                     filter: 'unset',
@@ -54,6 +55,7 @@ const Delivery_Partners: React.FC = () => {
                                 }}
                                 alt=""
                             />
+                            <div className='w-full h-full absolute top-0 left-0 bg-black/60'/>
                             {/* Center the Add_vehicle_form */}
                             <div className="absolute inset-0 flex md:items-center md:justify-center justify-center md:mt-auto mt-10 md:h-auto h-fit">
                                 <Add_vehicle_form />

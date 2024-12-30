@@ -24,7 +24,7 @@ const Enterprise = () => {
                     <div className='relative'>
                         <div className='h-[80vh] relative'>
                             <div className='absolute top-0 left-0 w-full h-full bg-black/60' />
-                            <img className=' w-full h-full' src={"https://www.gep.com/prod/s3fs-public/blog-images/artificial-intelligence-in-logistics-1920x1274.jpg"} alt="" />
+                            <img className=' w-full h-full' src={selector.enterprise_banner} alt="" />
                         </div>
                         <div>
                             <FillOutUserForm />

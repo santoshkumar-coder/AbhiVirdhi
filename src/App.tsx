@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import './index.css';
 import Header from './Components/Header';
@@ -20,10 +20,12 @@ import Fare_estimate_details from './Components/Fare_estimate_details';
 import Blog from './Components/Blog';
 import BlogHeader from './Components/Blog/Blog_Header';
 import Single_blog_details from './Components/Blog/Single_blog_details';
+import { FaAngleUp } from "react-icons/fa";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const locaiton = useLocation();
+  const location = useLocation();
+  const [showTopButton, setShowTopButton] = useState(false);
 
   const all_banners = useSelector((state: AppState) => state.banners);
 
@@ -31,21 +33,45 @@ const App: React.FC = () => {
     if (Object.keys(all_banners).length === 0) {
       await banners(dispatch);
     }
-  }
+  };
+
+  const handleScroll = () => {
+
+    if (window.scrollY > 300) {
+      setShowTopButton(true);
+    } else {
+      setShowTopButton(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
     fetchData();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [dispatch, all_banners]);
 
   return (
-    <div className="">
-      {locaiton.pathname.split("/")[1] !== "blog" ?
+    <div>
+      {location.pathname.split("/")[1] !== "blog" ? (
         <div>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/service/:serviceInformation" element={<Service_Information />} />
-            <Route path="/service/:serviceInformation/:serviceId/:id/:city_id" element={<Service_Information />} />
+            <Route
+              path="/service/:serviceInformation/:serviceId/:id/:city_id"
+              element={<Service_Information />}
+            />
             <Route path="/support" element={<Support />} />
             <Route path="/insurance_FAQS" element={<Insurance_FAQS />} />
             <Route path="/enterprise" element={<Enterprise />} />
@@ -56,22 +82,39 @@ const App: React.FC = () => {
             <Route path="/fare_estimate_mob" element={<Fare_estimate_details />} />
 
             <Route path="/blog" element={<Fare_estimate_details />} />
-            <Route path='*' element={<div className='min-h-screen flex items-center justify-center font-bold text-xl font-titillium text-black bg-black/20'>404 | No Page Found</div>} />
+            <Route
+              path="*"
+              element={
+                <div className="min-h-screen flex items-center justify-center font-bold text-xl font-titillium text-black bg-black/20">
+                  404 | No Page Found
+                </div>
+              }
+            />
           </Routes>
-        </div> :
+        </div>
+      ) : (
         <div>
           <BlogHeader />
           <Routes>
-            <Route path='/blog' element={<Blog />} />
-            <Route path='/blog/:categoryId' element={<Blog />} />
-            <Route path='/blog/:category_name/:singlePage_blog_id' element={<Single_blog_details />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:categoryId" element={<Blog />} />
+            <Route path="/blog/:category_name/:singlePage_blog_id" element={<Single_blog_details />} />
           </Routes>
         </div>
-      }
+      )}
 
       <Footer />
+
+      {showTopButton && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-10 right-10 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition"
+        >
+          <FaAngleUp />
+        </button>
+      )}
     </div>
   );
-}
+};
 
 export default App;
