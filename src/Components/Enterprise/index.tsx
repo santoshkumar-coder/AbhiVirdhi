@@ -22,8 +22,9 @@ const Enterprise = () => {
             {Object.keys(selector).length !== 0 ?
                 <div className='min-h-screen font-titillium'>
                     <div className='relative'>
-                        <div className='h-[60vh]'>
-                            <img className=' w-full h-full' src={selector.enterprise_banner} alt="" />
+                        <div className='h-[80vh] relative'>
+                            <div className='absolute top-0 left-0 w-full h-full bg-black/60' />
+                            <img className=' w-full h-full' src={"https://www.gep.com/prod/s3fs-public/blog-images/artificial-intelligence-in-logistics-1920x1274.jpg"} alt="" />
                         </div>
                         <div>
                             <FillOutUserForm />
@@ -32,9 +33,9 @@ const Enterprise = () => {
                             <About_enterprise />
                         </div>
                     </div>
-                    <div className='mt-24 bg-black/70 text-white'>
+                    {/* <div className='mt-24 bg-black/70 text-white'>
                         <Key_features />
-                    </div>
+                    </div> */}
                     <div className='mt-24'>
                         <OurCients />
                     </div>

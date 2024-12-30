@@ -5,7 +5,7 @@ import { IoIosMailOpen } from "react-icons/io";
 
 const FillOutUserForm = () => {
     return (
-        <div className='absolute top-10 md:left-20 left-14 md:w-[30%] bg-gray-100 p-5 rounded-xl font-titillium '>
+        <div className='absolute top-10 md:left-20 left-14 md:w-[30%] bg-gray-100/80 p-5 rounded-xl font-titillium '>
             <h1 className='text-center text-gray-800 font-bold text-xl'>Fill Out For More Details</h1>
             <form action="">
                 <div className='flex items-center rounded-md gap-4 border-2 border-gray-400 px-2 py-3 mt-5'>
