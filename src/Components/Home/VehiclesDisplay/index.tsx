@@ -32,8 +32,25 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
         const rs = await vehicleTypes();
         setData(rs)
     }
+
+    const [visiableEstimate, setVisiableEstimete] = useState<boolean>(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 500) {
+            setVisiableEstimete(true);
+        }
+        else {
+            setVisiableEstimete(false);
+        }
+    }
+
     useEffect(() => {
         fetchData();
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.addEventListener("scroll", handleScroll);
+        }
     }, [])
 
     return (
@@ -79,6 +96,22 @@ const Vehicels: React.FC<VehicelsProps> = ({ setCity, setEstimates, city_id }) =
                     <FaArrowRight className="w-5 h-5" />
                 </div>
             </div>
+            {visiableEstimate && (
+                <div
+                    className={`md:block hidden fixed top-5 right-5 transform font-bold font-titillium text-lg w-fit ${!visiableEstimate ? "animate-bump-out" : "animate-bump"
+                        }`}
+                    
+                >
+                    <button
+                        className="bg-blue-700/90 flex justify-between w-60 items-center text-white px-6 py-3 rounded-xl hover:cursor-pointer hover:bg-blue-800 transition-all"
+                        onClick={() => setEstimates(true)}
+                        aria-label="Get an Estimate"
+                    >
+                        <span className="mr-2">Get an Estimate</span>
+                        <FaArrowRight className="w-5 h-5" />
+                    </button>
+                </div>
+            )}
 
 
         </div>
