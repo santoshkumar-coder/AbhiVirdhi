@@ -6,6 +6,7 @@ import { MdLocationPin } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../redux/action";
 import Cities from "../../Home/VehiclesDisplay/Cities";
+import axios from "axios";
 
 const Address_Information: React.FC = () => {
   const { serviceId, serviceInformation } = useParams<{
@@ -18,6 +19,9 @@ const Address_Information: React.FC = () => {
   const [city_id, setCity_Id] = useState<number>(-1);
 
   const [GSTVerification, setGSTVerification] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [gstVerified, setGstVerified] = useState<boolean>(false);
+
   const [showOTP, setShowOTP] = useState(false);
   const [otpError, setotpError] = useState("");
   const [otp, setOtp] = useState("");
@@ -28,13 +32,13 @@ const Address_Information: React.FC = () => {
     phoneNumber: "",
     name: "",
     business: "",
-    gstNumber: ""
+    gstNumber: "",
   });
   const [touched, setTouched] = useState({
     pickupAddress: false,
     dropAddress: false,
     phoneNumber: false,
-    name: false
+    name: false,
   });
 
   const [selectBusinessDrop, setSelectBusinessDrop] = useState<boolean>(false);
@@ -68,7 +72,7 @@ const Address_Information: React.FC = () => {
       to_address_lat: "28.6505331",
       to_address_long: "77.23033699999999",
       vehical_info: serviceInformation || "",
-      vehical_id: serviceId || ""
+      vehical_id: serviceId || "",
 
       // fare_estimate_token: 'your_fare_estimate_token',
     });
@@ -80,6 +84,34 @@ const Address_Information: React.FC = () => {
     setGSTVerification(false);
     setShowOTP(false);
     setOtp("");
+  };
+
+  const gstVerification = async () => {
+    if (!formData.gstNumber) {
+      alert("Enter a valid GST number");
+      return;
+    }
+    setLoading(true);
+    try {
+      const rs = await axios.post(
+        " https://server1.pearl-developer.com/abhivriti/public/api/verify-gst",
+        {
+          gstin: formData.gstNumber,
+        }
+      );
+      console.log(rs);
+      if (rs.status === 200) {
+        alert(
+          `${rs?.data?.message}, ${rs?.data?.data?.legal_name_of_business}`
+        );
+        setGSTVerification(false);
+        setGstVerified(true);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -214,7 +246,7 @@ const Address_Information: React.FC = () => {
                   value={formData.business}
                 />
               </div>
-              {selectBusinessDrop && (
+              {!gstVerified && selectBusinessDrop && (
                 <div className="absolute top-14 bg-gray-100 shadow-lg hover:shadow-xl p-3 rounded-xl">
                   <h1
                     className="hover:bg-gray-300 font-bold p-2 text-sm cursor-pointer rounded-lg"
@@ -294,51 +326,57 @@ const Address_Information: React.FC = () => {
                   )}
                 </div>
 
-                {!showOTP && (
-                  <button
-                    onClick={() => setShowOTP(true)}
-                    className="mt-4 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                  >
-                    Verify GST
-                  </button>
-                )}
                 {/* OTP Verification Section */}
-                {showOTP && (
-                  <div className="mt-4">
-                    <div className="flex flex-col items-start justify-start">
-                      <label htmlFor="otp" className="text-sm">
-                        Enter OTP
-                        <span className="text-red-500 ml-1 font-bold text-lg">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        className="border p-2 w-full rounded-md text-sm focus:outline-none focus:ring focus:ring-blue-300"
-                        type="text"
-                        name="otp"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        placeholder="Enter OTP"
-                      />
-                    </div>
-                    {otpError && (
-                      <p className="text-xs text-red-500 mt-1">Invalid OTP</p>
-                    )}
-
-                    {/* Verify OTP Button */}
-                    <button
-                      onClick={handleVerifyOTP}
-                      className="mt-4 px-4 py-1 bg-green-500 text-white rounded-md hover:bg-green-600"
-                    >
-                      Verify OTP
-                    </button>
-                  </div>
+                {/* {showOTP && (
+              <div className="mt-4">
+                <div className="flex flex-col items-start justify-start">
+                  <label htmlFor="otp" className="text-sm">
+                    Enter OTP
+                    <span className="text-red-500 ml-1 font-bold text-lg">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    className="border p-2 w-full rounded-md text-sm focus:outline-none focus:ring focus:ring-blue-300"
+                    type="text"
+                    name="otp"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="Enter OTP"
+                  />
+                </div>
+                {otpError && (
+                  <p className="text-xs text-red-500 mt-1">Invalid OTP</p>
                 )}
+
+                
+              </div>
+            )} */}
+
+                <button
+                  onClick={gstVerification}
+                  className="mt-4 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                  disabled={loading} // Disable the button while loading
+                >
+                  {loading ? (
+                    <div className="spinner-border animate-spin border-4 border-t-4 border-white w-5 h-5 rounded-full"></div>
+                  ) : (
+                    "Verify GST"
+                  )}
+                </button>
+
+                {/* <button
+                onClick={handleVerifyOTP}
+                className="mt-4 px-4 py-1 bg-green-500 text-white rounded-md hover:bg-green-600"
+              >
+                Verify OTP
+              </button> */}
 
                 <button
                   onClick={() => {
                     setFormData({ ...formData, business: "" });
                     setGSTVerification(false);
+                    setShowOTP(false);
                   }}
                   className="m-4 px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
                 >

@@ -6,6 +6,7 @@ import { AppState } from "../../../redux/action";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { vehicleTypes } from "../../../api_fetch/vehicleTypes";
 import { ImCross } from "react-icons/im";
+import axios from "axios";
 
 interface EstimateProps {
   setEstimates: (estmates: boolean) => void;
@@ -23,6 +24,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
   const [veicalDescription, setVicalDescription] = useState<string>("");
   const [data, setData] = useState<VehicleInfo[] | null>(null);
   const [veicalId, setVeicalId] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const { serviceInformation, serviceId } = useParams<{
     serviceInformation: string;
@@ -54,13 +56,13 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
     phoneNumber: "",
     name: "",
     business: "",
-    gstNumber: ""
+    gstNumber: "",
   });
   const [touched, setTouched] = useState({
     pickupAddress: false,
     dropAddress: false,
     phoneNumber: false,
-    name: false
+    name: false,
   });
 
   const [selectBusinessDrop, setSelectBusinessDrop] = useState<boolean>(false);
@@ -102,7 +104,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
       to_address_lat: "28.6505331",
       to_address_long: "77.23033699999999",
       vehical_info: selectedVeical,
-      vehical_id: veicalId
+      vehical_id: veicalId,
       // fare_estimate_token: 'your_fare_estimate_token',
     });
 
@@ -114,8 +116,35 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
   const [otp, setOtp] = useState("");
   const handleVerifyOTP = async () => {
     setGSTVerification(false);
-    setShowOTP(false);
+
     setOtp("");
+  };
+
+  const gstVerification = async () => {
+    if (!formData.gstNumber) {
+      alert("Enter a valid GST number");
+      return;
+    }
+    setLoading(true);
+    try {
+      const rs = await axios.post(
+        " https://server1.pearl-developer.com/abhivriti/public/api/verify-gst",
+        {
+          gstin: formData.gstNumber,
+        }
+      );
+      console.log(rs);
+      if (rs.status === 200) {
+        alert(
+          `${rs?.data?.message}, ${rs?.data?.data?.legal_name_of_business}`
+        );
+        setGSTVerification(false);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div
@@ -359,7 +388,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                         onClick={() => {
                           setFormData({
                             ...formData,
-                            business: "personal user"
+                            business: "personal user",
                           });
                         }}
                       >
@@ -374,7 +403,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                         onClick={() => {
                           setFormData({
                             ...formData,
-                            business: "business user"
+                            business: "business user",
                           });
 
                           setGSTVerification(true);
@@ -464,24 +493,29 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                   <p className="text-xs text-red-500 mt-1">Invalid OTP</p>
                 )} */}
 
-            {/* Verify OTP Button */}
-            {/* </div>
-            )} */}
-            {/* {!showOTP ? ( */}
+                
+              {/* </div> */}
+            {/* )} */} 
+
             <button
-              onClick={() => setShowOTP(true)}
+              onClick={gstVerification}
               className="mt-4 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              disabled={loading} // Disable the button while loading
             >
-              Verify GST
+              {loading ? (
+                <div className="spinner-border animate-spin border-4 border-t-4 border-white w-5 h-5 rounded-full"></div>
+              ) : (
+                "Verify GST"
+              )}
             </button>
-            {/* ) : (
-              <button
+
+            {/* <button
                 onClick={handleVerifyOTP}
                 className="mt-4 px-4 py-1 bg-green-500 text-white rounded-md hover:bg-green-600"
               >
                 Verify OTP
-              </button>
-       )} */}
+              </button> */}
+
             <button
               onClick={() => {
                 setFormData({ ...formData, business: "" });
@@ -493,7 +527,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
               Close
             </button>
           </div>
-        </div>
+        // </div>
       )}
     </div>
   );
