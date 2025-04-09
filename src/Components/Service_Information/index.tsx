@@ -81,7 +81,7 @@ const Service_Information: React.FC = () => {
                     <div className='absolute md:top-32 top-10 left-0 flex justify-center flex-col items-center w-full'>
                         <div className='text-center w-full flex flex-col gap-5 items-center justify-center'>
                             <h1 className='md:text-4xl text-xl font-bold text-white md:w-1/2 md:px-0 px-5 '>Hassle Free Package Delivery Services in {data?.state?.name}</h1>
-                            <p className='text-white lg:text-lg font-semibold md:w-1/2 md:px-0 px-5'>Book Porter for all your package delivery requirements by bike. Enjoy reliable and safe package delivery services in {data?.state?.name}.</p>
+                            <p className='text-white lg:text-lg font-semibold md:w-1/2 md:px-0 px-5'>Book Abhiviridhi for all your package delivery requirements by bike. Enjoy reliable and safe package delivery services in {data?.state?.name}.</p>
                             {/* <span className='text-white underline hover:font-bold cursor-pointer' >Know More &#8811;</span> */}
                             <div className='w-full'>
                                 <Address_Information />

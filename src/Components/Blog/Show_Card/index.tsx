@@ -41,7 +41,7 @@ const Show_Card: React.FC<ShowCardProps> = ({ item, index }) => {
             <img
               className="w-full h-full md:rounded-r-xl rounded-xl md:rounded-none"
               src={item?.images[0]}
-              alt="porter"
+              alt="Abhiviridhi"
             />
           </div>
         </div>
@@ -51,7 +51,7 @@ const Show_Card: React.FC<ShowCardProps> = ({ item, index }) => {
             <img
               className="w-full h-full md:rounded-l-xl rounded-xl md:rounded-none"
               src={item?.images[0]}
-              alt="porter"
+              alt="Abhiviridhi"
             />
           </div>
           <div className="md:w-[50%] md:pl-5 md:mt-0 mt-5">

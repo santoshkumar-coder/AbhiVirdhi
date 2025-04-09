@@ -90,7 +90,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
     e.preventDefault();
 
     const params = new URLSearchParams({
-      brand: "porter",
+      brand: "abhiviridhi",
       customer_mobile: formData.phoneNumber,
       customer_name: formData.name,
       frequency: formData.business,
@@ -442,7 +442,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
             </div>
 
             {/* OTP Verification Section */}
-            {showOTP && (
+            {/* {showOTP && (
               <div className="mt-4">
                 <div className="flex flex-col items-start justify-start">
                   <label htmlFor="otp" className="text-sm">
@@ -462,26 +462,26 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                 </div>
                 {otpError && (
                   <p className="text-xs text-red-500 mt-1">Invalid OTP</p>
-                )}
+                )} */}
 
-                {/* Verify OTP Button */}
-              </div>
-            )}
-            {!showOTP ? (
-              <button
-                onClick={() => setShowOTP(true)}
-                className="mt-4 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-              >
-                Verify GST
-              </button>
-            ) : (
+            {/* Verify OTP Button */}
+            {/* </div>
+            )} */}
+            {/* {!showOTP ? ( */}
+            <button
+              onClick={() => setShowOTP(true)}
+              className="mt-4 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            >
+              Verify GST
+            </button>
+            {/* ) : (
               <button
                 onClick={handleVerifyOTP}
                 className="mt-4 px-4 py-1 bg-green-500 text-white rounded-md hover:bg-green-600"
               >
                 Verify OTP
               </button>
-            )}
+       )} */}
             <button
               onClick={() => {
                 setFormData({ ...formData, business: "" });

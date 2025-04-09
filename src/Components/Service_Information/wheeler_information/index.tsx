@@ -24,7 +24,7 @@ const Wheeler_Information: React.FC<WheelerInformationProps> = ({ data }) => {
         <div className='font-titillium'>
             {data ?
                 <div className='flex flex-col justify-center items-center py-10 px-5 '>
-                    <h1 className='text-2xl font-semibold'>{params.serviceInformation} from Porter</h1>
+                    <h1 className='text-2xl font-semibold'>{params.serviceInformation} from Abhiviridhi</h1>
                     <div className='md:w-[70%] p-5 md:flex border-2 border-gray-300 my-10 bg-white rounded-lg gap-5' >
                         <div>
                             <img className='w-[50rem] h-[15rem]' src={data[0]?.image} alt="twoWheelerInformation" />

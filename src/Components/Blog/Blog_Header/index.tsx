@@ -57,7 +57,7 @@ const BlogHeader: React.FC = () => {
                 </div>
                 <div className="lg:flex hidden gap-5 font-semibold">
                     <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Community Guidelines</Link>
-                    <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Life at Porter</Link>
+                    <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Life at Abhiviridhi</Link>
                     <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Impact Tales</Link>
                     <Link to="/blog" className="hover:text-blue-800 cursor-pointer ">Enterprise Focus</Link>
                     <select name="" id="" className="cursor-pointer" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -163,7 +163,7 @@ const Header_Menu: React.FC<Header_Menu_Props> = ({ logo, setShowMenu, showMenu 
                                     }, 700)
                                 }}
                                 className={({ isActive }) => `font-semibold ${isActive ? "text-[rgb(0,0,0)]" : "text-white"}`}>
-                                Life at Porter
+                                Life at Abhiviridhi
                             </NavLink>
                         </div>
                         <div>

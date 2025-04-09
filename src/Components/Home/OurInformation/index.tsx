@@ -105,7 +105,7 @@ const OurInformation = () => {
                                             </div>
                                         </div>
                                         <div className='mt-5'>
-                                            <h1 className='text-justify text-lg select-none'>“Way better than naaka waalas. Have shifted all my logistics needs to Porter and I can now safely focus on my business growth. Amazing service!”</h1>
+                                            <h1 className='text-justify text-lg select-none'>“Way better than naaka waalas. Have shifted all my logistics needs to Abhiviridhi and I can now safely focus on my business growth. Amazing service!”</h1>
                                         </div>
                                     </div>
                                 )

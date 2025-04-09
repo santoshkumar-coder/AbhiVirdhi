@@ -110,15 +110,15 @@ interface CrousalItems {
 
 export const CAROUSAL_DATA: CrousalItems[] = [
     {
-        description: "Logistics Company Porter has launched its latest social media brand campaign House shifting hai? Ho Jayega’, highlighting its packers and movers service offerings",
+        description: "Logistics Company Abhiviridhi has launched its latest social media brand campaign House shifting hai? Ho Jayega’, highlighting its packers and movers service offerings",
         image: carousal1
     },
     {
-        description: "Logistics Company Porter has launched its latest social media brand campaign House shifting hai? Ho Jayega’, highlighting its packers and movers service offerings",
+        description: "Logistics Company Abhiviridhi has launched its latest social media brand campaign House shifting hai? Ho Jayega’, highlighting its packers and movers service offerings",
         image: carousal2
     },
     {
-        description: "Logistics Company Porter has launched its latest social media brand campaign House shifting hai? Ho Jayega’, highlighting its packers and movers service offerings",
+        description: "Logistics Company Abhiviridhi has launched its latest social media brand campaign House shifting hai? Ho Jayega’, highlighting its packers and movers service offerings",
         image: carousal3
     }
 ]
@@ -130,16 +130,16 @@ interface AskedQuestions {
 
 export const ASKED_QUESTIONS: AskedQuestions[] = [
     {
-        questions: "What is Porter App?",
-        descriptions: "Porter is a tech-enabled logistics company offering a variety of intracity and intercity delivery services. Just download and register yourself on the app, choose the service that best fits yours logistic needs and make your booking! With Porter, you will get a verified driver and vehicle right at your doorstep."
+        questions: "What is Abhiviridhi App?",
+        descriptions: "Abhiviridhi is a tech-enabled logistics company offering a variety of intracity and intercity delivery services. Just download and register yourself on the app, choose the service that best fits yours logistic needs and make your booking! With Abhiviridhi, you will get a verified driver and vehicle right at your doorstep."
     },
     {
-        questions: "How do I use Porter App?",
-        descriptions: "Follow these simple steps to start leveraging hassle-free logistics from Porter: 1.Download the Porter app 2.Choose the service you want to use 3.Select your pick up and delivery locations 4.Add any extra stops, if applicable 5.Choose the most appropriate vehicle type as per your requirements (2wheeler, three-wheelers or trucks) 6.Select the type of goods you’re sending 7.Choose your payment method 8.Click on “Book Now” and your vehicle is on its way!"
+        questions: "How do I use Abhiviridhi App?",
+        descriptions: "Follow these simple steps to start leveraging hassle-free logistics from Abhiviridhi: 1.Download the Abhiviridhi app 2.Choose the service you want to use 3.Select your pick up and delivery locations 4.Add any extra stops, if applicable 5.Choose the most appropriate vehicle type as per your requirements (2wheeler, three-wheelers or trucks) 6.Select the type of goods you’re sending 7.Choose your payment method 8.Click on “Book Now” and your vehicle is on its way!"
     },
     {
-        questions: "How do I book a tempo/mini truck/bike or intercity courier services online from the Porter app?",
-        descriptions: "Get reliable and affordable logistics services from the Porter app by following these steps: 1.Sign in to the Porter app 2.Choose the service you want - trucks, 2wheeler or intercity courier services 3.Set your pick up and drop off location 4.Browse through the list of available vehicles (Tata Ace, Pickup 8ft, 2wheeler etc) and pick the one that suits your moving needs 5.Enter a few additional details, apply coupons to get exciting discounts, and confirm your booking. 6.Sit back and relax - our verified driver partners will do the rest."
+        questions: "How do I book a tempo/mini truck/bike or intercity courier services online from the Abhiviridhi app?",
+        descriptions: "Get reliable and affordable logistics services from the Abhiviridhi app by following these steps: 1.Sign in to the Abhiviridhi app 2.Choose the service you want - trucks, 2wheeler or intercity courier services 3.Set your pick up and drop off location 4.Browse through the list of available vehicles (Tata Ace, Pickup 8ft, 2wheeler etc) and pick the one that suits your moving needs 5.Enter a few additional details, apply coupons to get exciting discounts, and confirm your booking. 6.Sit back and relax - our verified driver partners will do the rest."
     },
 
 ]

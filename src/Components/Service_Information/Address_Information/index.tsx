@@ -56,7 +56,7 @@ const Address_Information: React.FC = () => {
     e.preventDefault();
 
     const params = new URLSearchParams({
-      brand: "porter",
+      brand: "abhiviridhi",
       customer_mobile: formData.phoneNumber,
       customer_name: formData.name,
       frequency: formData.business,

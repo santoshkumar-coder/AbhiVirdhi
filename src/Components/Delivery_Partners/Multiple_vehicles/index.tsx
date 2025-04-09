@@ -21,7 +21,7 @@ const MultipleVehicles: React.FC<MakeLifeEasyProps> = ({ data }) => {
                     </div>
                     <div className='md:w-[50%] md:space-y-3 space-y-5'>
                         <h1 className='font-bold text-lg'>If you are a fleet owner and own multiple vehicles.</h1>
-                        <p className="text-gray-700 ">Keeping track of your vehicle fleet and optimising their efficiency can be a huge challenge. Partner with Porter to boost your earnings and manage your vehicles easily.</p>
+                        <p className="text-gray-700 ">Keeping track of your vehicle fleet and optimising their efficiency can be a huge challenge. Partner with Abhiviridhi to boost your earnings and manage your vehicles easily.</p>
                         <button className="px-4 py-2 font-semibold text-white bg-gradient-to-r from-blue-500 to-violet-500 rounded hover:from-blue-600 hover:to-violet-600">
                             CONTACT US
                         </button>

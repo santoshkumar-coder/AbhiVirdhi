@@ -4,7 +4,7 @@ const WhyChosse = () => {
     return (
         <div className='flex flex-col items-center justify-center font-titillium md:px-auto px-7'>
             <div>
-                <h1 className='text-xl font-bold md:text-start text-center'>Why Choose Porter Pickup and Delivery Services?</h1>
+                <h1 className='text-xl font-bold md:text-start text-center'>Why Choose Abhiviridhi Pickup and Delivery Services?</h1>
             </div>
             <div className='mt-10 space-y-5'>
                 <div className='bg-white px-7 rounded-lg py-2'>
@@ -21,7 +21,7 @@ const WhyChosse = () => {
                 </div>
                 <div className='bg-white px-7 rounded-lg py-2'>
                     <h1 className='font-semibold text-lg text-justify'>Reliable Consignment Delivery</h1>
-                    <p>Book Porter Two-wheeler delivery services online and get quick delivery.</p>
+                    <p>Book Abhiviridhi Two-wheeler delivery services online and get quick delivery.</p>
                 </div>
             </div>
         </div>

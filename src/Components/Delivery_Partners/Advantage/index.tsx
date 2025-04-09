@@ -13,7 +13,7 @@ interface Advantage {
 const Advantage: React.FC<Advantage> = ({ data }) => {
     return (
         <div className='md:p-10 p-5'>
-            <h1 className='text-center pb-10 font-bold text-xl' >PORTER ADVANTAGE</h1>
+            <h1 className='text-center pb-10 font-bold text-xl' >ABHIVIRIDHI ADVANTAGE</h1>
             <div className="md:flex items-center justify-center gap-5">
                 {data?.Porter_advantage.map((item, index) => {
                     return (

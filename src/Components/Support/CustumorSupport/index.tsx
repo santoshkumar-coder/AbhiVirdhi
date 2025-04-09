@@ -85,7 +85,7 @@ const CustumorSupport = () => {
                             <div className='flex md:h-40 h-fit py-5 px-2 items-center md:rounded-br-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[6px]'>
                                 <img className='w-24 h-24 rounded-lg' src={drives} alt="" />
                                 <div>
-                                    <h1 className='text-sm font-bold'>DRIVE WITH PORTER</h1>
+                                    <h1 className='text-sm font-bold'>DRIVE WITH ABHIVIRIDHI</h1>
                                     <p className='font-sm text-sm mt-2'>Are you a tempo truck owner? Increase your earnings by partnering with us.
                                         <span className='text-blue-700 hover:text-blue-400 font-bold cursor-pointer'>Click here</span>{" "}
                                         or reach us out on

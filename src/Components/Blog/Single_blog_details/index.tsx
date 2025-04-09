@@ -70,8 +70,8 @@ const Single_blog_details = () => {
                 </div>
                 <div className="md:w-[27%] md:sticky top-24 h-fit overflow-hidden">
                     <div className="p-5 bg-blue-100 rounded-xl mb-5">
-                        <h1 className="text-center font-bold text-lg">Think Logistics, Think Porter!</h1>
-                        <p className="text-center">Get the Porter mobile app to start booking your orders!</p>
+                        <h1 className="text-center font-bold text-lg">Think Logistics, Think Abhiviridhi!</h1>
+                        <p className="text-center">Get the Abhiviridhi mobile app to start booking your orders!</p>
                         <div className="flex justify-center items-center">
                             <img
                                 className="my-5 w-60 h-60"
@@ -88,11 +88,11 @@ const Single_blog_details = () => {
                         </h1>
                         <p className="mt-5 bg-[#1D4ED8] w-fit text-white px-4 py-2 rounded font-bold cursor-pointer"
                             onClick={() => navigate("/")}
-                        >Book Porter</p>
+                        >Book Abhiviridhi</p>
                         <div className="my-5">
                             <img
                                 src="https://blog.porter.in/wp-content/uploads/porter-image.svg"
-                                alt="porter"
+                                alt="Abhiviridhi"
                             />
                         </div>
                     </div>
