@@ -11,3 +11,14 @@ export const news = async () => {
         return error
     }
 }
+
+export const happu_customer_review = async()=>{
+    try {
+        const rs = await axios(`${base_url}app_happy_customer`);
+        // console.log(rs.data.data);
+        return rs.data.data
+    } catch (error) {
+        console.log(error);
+        return error
+    }
+}

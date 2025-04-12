@@ -128,7 +128,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
     setLoading(true);
     try {
       const rs = await axios.post(
-        " https://server1.pearl-developer.com/abhivriti/public/api/verify-gst",
+        "https://server1.pearl-developer.com/abhivriti/public/api/verify-gst",
         {
           gstin: formData.gstNumber,
         }

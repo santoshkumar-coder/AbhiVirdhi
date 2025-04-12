@@ -26,3 +26,12 @@ export const Add_enterprise = async (
     return error;
   }
 };
+
+export const customer_Review = async () => {
+  try {
+    const rs = await axios.get(base_url + "get_happy_customers");
+    return rs;
+  } catch (error) {
+    console.log(error);
+  }
+};
