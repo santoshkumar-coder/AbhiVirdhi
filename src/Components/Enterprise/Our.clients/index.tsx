@@ -45,7 +45,7 @@ const OurCients = () => {
           pauseOnHover
           direction="left"
         >
-          {images?.map((image, index) => (
+          {ourClients?.map((image, index) => (
             <div
               key={index}
               className=" md:w-30 w-40 mx-4 flex justify-center items-center"
