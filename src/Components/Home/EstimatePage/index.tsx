@@ -7,6 +7,8 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { vehicleTypes } from "../../../api_fetch/vehicleTypes";
 import { ImCross } from "react-icons/im";
 import axios from "axios";
+import { LoadScript } from "@react-google-maps/api";
+import PickupForm from "../../../hook/PickupForm";
 
 interface EstimateProps {
   setEstimates: (estmates: boolean) => void;
@@ -17,6 +19,21 @@ interface VehicleInfo {
   descriptions: string;
   id: string;
 }
+
+const libraries: "places"[] = ["places"];
+
+const fetchAddressFromCoordinates = async (lat: number, lng: number) => {
+  const apiKey = "YOUR_GOOGLE_MAPS_API_KEY";
+  const response = await fetch(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
+  );
+  const data = await response.json();
+  if (data.status === "OK") {
+    return data.results[0].formatted_address;
+  } else {
+    throw new Error("Failed to fetch address from coordinates");
+  }
+};
 
 const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
   const [show, setShow] = useState<boolean>(false);
@@ -56,13 +73,13 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
     phoneNumber: "",
     name: "",
     business: "",
-    gstNumber: "",
+    gstNumber: ""
   });
   const [touched, setTouched] = useState({
     pickupAddress: false,
     dropAddress: false,
     phoneNumber: false,
-    name: false,
+    name: false
   });
 
   const [selectBusinessDrop, setSelectBusinessDrop] = useState<boolean>(false);
@@ -104,7 +121,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
       to_address_lat: "28.6505331",
       to_address_long: "77.23033699999999",
       vehical_info: selectedVeical,
-      vehical_id: veicalId,
+      vehical_id: veicalId
       // fare_estimate_token: 'your_fare_estimate_token',
     });
 
@@ -130,7 +147,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
       const rs = await axios.post(
         "https://server1.pearl-developer.com/abhivriti/public/api/verify-gst",
         {
-          gstin: formData.gstNumber,
+          gstin: formData.gstNumber
         }
       );
       console.log(rs);
@@ -266,179 +283,182 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                 </div>
               )}
 
-              <form
-                className="flex flex-col bg-white items-center px-5 py-8 rounded-r-xl rounded-bl-xl gap-3 w-auto"
-                onSubmit={(e) => handleSubmit(e)}
-              >
-                <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
-                  <label htmlFor="pickupaddress" className=" text-sm">
-                    Pickup Address
-                    <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    className="border-none w-full focus:outline-none focus:border-transparent text-sm"
-                    type="text"
-                    name="pickupAddress"
-                    value={formData.pickupAddress}
-                    onChange={handleChange}
-                    onFocus={() => handleFocus("pickupAddress")}
-                    onBlur={() => handleBlur("pickupAddress")}
-                    placeholder="Sending from"
-                  />
-                  {touched.pickupAddress && !formData.pickupAddress && (
-                    <p className="text-xs text-red-500 mt-1">
-                      Enter Pickup Address
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
-                  <label htmlFor="dropaddress" className=" text-sm">
-                    Drop Address
-                    <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    className="border-none w-full focus:outline-none focus:border-transparent text-sm"
-                    type="text"
-                    name="dropAddress"
-                    value={formData.dropAddress}
-                    onChange={handleChange}
-                    onFocus={() => handleFocus("dropAddress")}
-                    onBlur={() => handleBlur("dropAddress")}
-                    placeholder="Sending to"
-                  />
-                  {touched.dropAddress && !formData.dropAddress && (
-                    <p className="text-xs text-red-500 mt-1">
-                      Enter Drop Address
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
-                  <label htmlFor="name" className=" text-sm">
-                    Sender name
-                    <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    className="border-none w-full text-sm focus:outline-none focus:border-transparent"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    onFocus={() => handleFocus("name")}
-                    onBlur={() => handleBlur("name")}
-                    placeholder="Enter your name"
-                  />
-                  {touched.name && !formData.name && (
-                    <p className="text-xs text-red-500 mt-1">Enter your Name</p>
-                  )}
-                </div>
-
-                <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
-                  <label htmlFor="phoneNumber" className=" text-sm">
-                    Sender phone Number
-                    <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    className="border-none w-full focus:outline-none focus:border-transparent text-sm w-full caret-white"
-                    type="number"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                    onFocus={() => handleFocus("phoneNumber")}
-                    onBlur={() => handleBlur("phoneNumber")}
-                    placeholder="Enter contact details"
-                  />
-                  {touched.phoneNumber && !formData.phoneNumber && (
-                    <p className="text-xs text-red-500 mt-1">
-                      Enter Phone Number
-                    </p>
-                  )}
-                </div>
-
-                <div className="relativ  w-full">
-                  <div
-                    className="flex flex-col items-start justify-start cursor-pointer w-full py-1 px-2"
-                    onClick={() => setSelectBusinessDrop(!selectBusinessDrop)}
-                  >
-                    <label
-                      htmlFor="bussesniss"
-                      className="flex items-center justify-center cursor-pointer text-sm"
-                    >
-                      What describes you best?
+              <PickupForm />
+              {/* <form
+                  className="flex flex-col bg-white items-center px-5 py-8 rounded-r-xl rounded-bl-xl gap-3 w-auto"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
+                  <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
+                    <label htmlFor="pickupaddress" className=" text-sm">
+                      Pickup Address
                       <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
                         *
                       </span>
                     </label>
-                    <div className="flex items-center justify-between w-full gap-2 mt-2">
-                      <p
-                        className={`w-full bg-gray-200 py-1 font-bold text-center rounded-lg ${
-                          formData.business === "personal user"
-                            ? "bg-red-800 text-white"
-                            : "bg-gray-200"
-                        }`}
-                        onClick={() => {
-                          setFormData({
-                            ...formData,
-                            business: "personal user",
-                          });
-                        }}
-                      >
-                        Personal User
+                    <input
+                      className="border-none w-full focus:outline-none focus:border-transparent text-sm"
+                      type="text"
+                      name="pickupAddress"
+                      value={formData.pickupAddress}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus("pickupAddress")}
+                      onBlur={() => handleBlur("pickupAddress")}
+                      placeholder="Sending from"
+                    />
+                    {touched.pickupAddress && !formData.pickupAddress && (
+                      <p className="text-xs text-red-500 mt-1">
+                        Enter Pickup Address
                       </p>
-                      <p
-                        className={`w-full bg-gray-200 py-1 font-bold  text-center rounded-lg ${
-                          formData.business === "business user"
-                            ? "bg-red-800 text-white"
-                            : "bg-gray-200"
-                        }`}
-                        onClick={() => {
-                          setFormData({
-                            ...formData,
-                            business: "business user",
-                          });
+                    )}
+                  </div>
 
-                          setGSTVerification(true);
-                        }}
-                      >
-                        Business User
+                  <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
+                    <label htmlFor="dropaddress" className=" text-sm">
+                      Drop Address
+                      <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
+                        *
+                      </span>
+                    </label>
+                    <input
+                      className="border-none w-full focus:outline-none focus:border-transparent text-sm"
+                      type="text"
+                      name="dropAddress"
+                      value={formData.dropAddress}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus("dropAddress")}
+                      onBlur={() => handleBlur("dropAddress")}
+                      placeholder="Sending to"
+                    />
+                    {touched.dropAddress && !formData.dropAddress && (
+                      <p className="text-xs text-red-500 mt-1">
+                        Enter Drop Address
                       </p>
+                    )}
+                  </div>
+
+                  <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
+                    <label htmlFor="name" className=" text-sm">
+                      Sender name
+                      <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
+                        *
+                      </span>
+                    </label>
+                    <input
+                      className="border-none w-full text-sm focus:outline-none focus:border-transparent"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus("name")}
+                      onBlur={() => handleBlur("name")}
+                      placeholder="Enter your name"
+                    />
+                    {touched.name && !formData.name && (
+                      <p className="text-xs text-red-500 mt-1">
+                        Enter your Name
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
+                    <label htmlFor="phoneNumber" className=" text-sm">
+                      Sender phone Number
+                      <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
+                        *
+                      </span>
+                    </label>
+                    <input
+                      className="border-none w-full focus:outline-none focus:border-transparent text-sm w-full caret-white"
+                      type="number"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus("phoneNumber")}
+                      onBlur={() => handleBlur("phoneNumber")}
+                      placeholder="Enter contact details"
+                    />
+                    {touched.phoneNumber && !formData.phoneNumber && (
+                      <p className="text-xs text-red-500 mt-1">
+                        Enter Phone Number
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="relativ  w-full">
+                    <div
+                      className="flex flex-col items-start justify-start cursor-pointer w-full py-1 px-2"
+                      onClick={() => setSelectBusinessDrop(!selectBusinessDrop)}
+                    >
+                      <label
+                        htmlFor="bussesniss"
+                        className="flex items-center justify-center cursor-pointer text-sm"
+                      >
+                        What describes you best?
+                        <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
+                          *
+                        </span>
+                      </label>
+                      <div className="flex items-center justify-between w-full gap-2 mt-2">
+                        <p
+                          className={`w-full bg-gray-200 py-1 font-bold text-center rounded-lg ${
+                            formData.business === "personal user"
+                              ? "bg-red-800 text-white"
+                              : "bg-gray-200"
+                          }`}
+                          onClick={() => {
+                            setFormData({
+                              ...formData,
+                              business: "personal user"
+                            });
+                          }}
+                        >
+                          Personal User
+                        </p>
+                        <p
+                          className={`w-full bg-gray-200 py-1 font-bold  text-center rounded-lg ${
+                            formData.business === "business user"
+                              ? "bg-red-800 text-white"
+                              : "bg-gray-200"
+                          }`}
+                          onClick={() => {
+                            setFormData({
+                              ...formData,
+                              business: "business user"
+                            });
+
+                            setGSTVerification(true);
+                          }}
+                        >
+                          Business User
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <button
-                  className={`w-full flex items-center justify-between mt-5 gap-10  select-none cursor-pointer p-3 rounded-lg text-white  ml-3 text-sm ${
-                    formData.business &&
-                    formData.dropAddress &&
-                    formData.name &&
-                    formData.phoneNumber &&
-                    formData.pickupAddress
-                      ? "hover:text-white/80 bg-blue-600 hover:bg-blue-800 hover:scale-105 trasition-all ease-in duration-300"
-                      : "bg-gray-400"
-                  } pr-10`}
-                  disabled={
-                    !formData.business &&
-                    !formData.dropAddress &&
-                    !formData.name &&
-                    !formData.phoneNumber &&
-                    !formData.pickupAddress
-                  }
-                >
-                  <span>Get an estimate</span>
-                  <span>
-                    <FaLongArrowAltRight />
-                  </span>
-                </button>
-              </form>
+                  <button
+                    className={`w-full flex items-center justify-between mt-5 gap-10  select-none cursor-pointer p-3 rounded-lg text-white  ml-3 text-sm ${
+                      formData.business &&
+                      formData.dropAddress &&
+                      formData.name &&
+                      formData.phoneNumber &&
+                      formData.pickupAddress
+                        ? "hover:text-white/80 bg-blue-600 hover:bg-blue-800 hover:scale-105 trasition-all ease-in duration-300"
+                        : "bg-gray-400"
+                    } pr-10`}
+                    disabled={
+                      !formData.business &&
+                      !formData.dropAddress &&
+                      !formData.name &&
+                      !formData.phoneNumber &&
+                      !formData.pickupAddress
+                    }
+                  >
+                    <span>Get an estimate</span>
+                    <span>
+                      <FaLongArrowAltRight />
+                    </span>
+                  </button>
+                </form> */}
             </div>
           )}
         </div>
@@ -493,9 +513,8 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                   <p className="text-xs text-red-500 mt-1">Invalid OTP</p>
                 )} */}
 
-                
-              {/* </div> */}
-            {/* )} */} 
+            {/* </div> */}
+            {/* )} */}
 
             <button
               onClick={gstVerification}
@@ -527,7 +546,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
               Close
             </button>
           </div>
-        // </div>
+        </div>
       )}
     </div>
   );
