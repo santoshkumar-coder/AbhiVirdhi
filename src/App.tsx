@@ -25,6 +25,7 @@ import useLiveLocation from "./hook/useLiveLocation";
 
 const App: React.FC = () => {
   const { latitude, longitude, error } = useLiveLocation();
+  const location = useLocation();
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -33,10 +34,10 @@ const App: React.FC = () => {
     if (error) {
       console.warn("Location error:", error);
     }
-  }, [latitude, longitude, error]);
+  }, [latitude, longitude, error, location]);
 
   const dispatch = useDispatch();
-  const location = useLocation();
+
   const [showTopButton, setShowTopButton] = useState(false);
 
   const all_banners = useSelector((state: AppState) => state.banners);

@@ -4,7 +4,10 @@ import useLiveLocation from "./useLiveLocation";
 
 const libraries: "places"[] = ["places"];
 
-const fetchAddressFromCoordinates = async (lat: number, lng: number): Promise<string | null> => {
+const fetchAddressFromCoordinates = async (
+  lat: number,
+  lng: number
+): Promise<string | null> => {
   const apiKey = "AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE"; // Replace with real key
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
 
@@ -26,7 +29,12 @@ const fetchAddressFromCoordinates = async (lat: number, lng: number): Promise<st
 
 const PickupForm = () => {
   const location = useLiveLocation();
-  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+  const pickupAutocompleteRef = useRef<google.maps.places.Autocomplete | null>(
+    null
+  );
+  const dropAutocompleteRef = useRef<google.maps.places.Autocomplete | null>(
+    null
+  );
 
   const [formData, setFormData] = useState({
     pickupAddress: "",
@@ -47,7 +55,10 @@ const PickupForm = () => {
         !loadingAddress
       ) {
         setLoadingAddress(true);
-        const address = await fetchAddressFromCoordinates(location.latitude, location.longitude);
+        const address = await fetchAddressFromCoordinates(
+          location.latitude,
+          location.longitude
+        );
         if (address) {
           setFormData((prev) => ({ ...prev, pickupAddress: address }));
         }
@@ -64,13 +75,29 @@ const PickupForm = () => {
     console.log(`Input ${name} changed:`, value);
   };
 
-  const handlePlaceChanged = () => {
-    const place = autocompleteRef.current?.getPlace();
+  const handlePickupPlaceChanged = () => {
+    const place = pickupAutocompleteRef.current?.getPlace();
     if (place?.formatted_address) {
-      console.log("Selected place:", place.formatted_address);
-      setFormData((prev) => ({ ...prev, pickupAddress: place.formatted_address || "" }));
+      console.log("Selected pickup address:", place.formatted_address);
+      setFormData((prev) => ({
+        ...prev,
+        pickupAddress: place.formatted_address || ""
+      }));
     } else {
-      console.warn("No formatted address found in selected place");
+      console.warn("No formatted address found in pickup place");
+    }
+  };
+
+  const handleDropPlaceChanged = () => {
+    const place = dropAutocompleteRef.current?.getPlace();
+    if (place?.formatted_address) {
+      console.log("Selected drop address:", place.formatted_address);
+      setFormData((prev) => ({
+        ...prev,
+        dropAddress: place.formatted_address || ""
+      }));
+    } else {
+      console.warn("No formatted address found in drop place");
     }
   };
 
@@ -80,25 +107,33 @@ const PickupForm = () => {
   };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE" libraries={libraries}>
-      <form onSubmit={handleSubmit} className="p-4 bg-white rounded shadow max-w-md mx-auto">
+    <LoadScript
+      googleMapsApiKey="AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE"
+      libraries={libraries}
+    >
+      <form
+        onSubmit={handleSubmit}
+        className="p-4 bg-white rounded shadow max-w-md mx-auto"
+      >
         <h2 className="text-lg font-semibold mb-4">Pickup Form</h2>
 
         <label className="block mb-3">
           Pickup Address
           <Autocomplete
             onLoad={(autocomplete) => {
-              autocompleteRef.current = autocomplete;
-              console.log("Autocomplete loaded");
+              pickupAutocompleteRef.current = autocomplete;
+              console.log("Pickup Autocomplete loaded");
             }}
-            onPlaceChanged={handlePlaceChanged}
+            onPlaceChanged={handlePickupPlaceChanged}
           >
             <input
               type="text"
               name="pickupAddress"
               value={formData.pickupAddress}
               onChange={handleChange}
-              placeholder={loadingAddress ? "Detecting..." : "Enter pickup location"}
+              placeholder={
+                loadingAddress ? "Detecting..." : "Enter pickup location"
+              }
               className="w-full border px-2 py-1 rounded mt-1"
             />
           </Autocomplete>
@@ -106,14 +141,22 @@ const PickupForm = () => {
 
         <label className="block mb-3">
           Drop Address
-          <input
-            type="text"
-            name="dropAddress"
-            value={formData.dropAddress}
-            onChange={handleChange}
-            placeholder="Enter drop location"
-            className="w-full border px-2 py-1 rounded mt-1"
-          />
+          <Autocomplete
+            onLoad={(autocomplete) => {
+              dropAutocompleteRef.current = autocomplete;
+              console.log("Drop Autocomplete loaded");
+            }}
+            onPlaceChanged={handleDropPlaceChanged}
+          >
+            <input
+              type="text"
+              name="dropAddress"
+              value={formData.dropAddress}
+              onChange={handleChange}
+              placeholder="Enter drop location"
+              className="w-full border px-2 py-1 rounded mt-1"
+            />
+          </Autocomplete>
         </label>
 
         <label className="block mb-3">

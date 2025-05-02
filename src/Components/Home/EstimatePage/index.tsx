@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../redux/action";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { vehicleTypes } from "../../../api_fetch/vehicleTypes";
 import { ImCross } from "react-icons/im";
 import axios from "axios";
-import { LoadScript } from "@react-google-maps/api";
+import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import PickupForm from "../../../hook/PickupForm";
+import useLiveLocation from "../../../hook/useLiveLocation";
 
 interface EstimateProps {
   setEstimates: (estmates: boolean) => void;
+  estimates: boolean;
 }
 interface VehicleInfo {
   name: string;
@@ -23,7 +25,7 @@ interface VehicleInfo {
 const libraries: "places"[] = ["places"];
 
 const fetchAddressFromCoordinates = async (lat: number, lng: number) => {
-  const apiKey = "YOUR_GOOGLE_MAPS_API_KEY";
+  const apiKey = "AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE";
   const response = await fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
   );
@@ -35,7 +37,7 @@ const fetchAddressFromCoordinates = async (lat: number, lng: number) => {
   }
 };
 
-const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
+const GetEstmate: React.FC<EstimateProps> = ({ setEstimates, estimates }) => {
   const [show, setShow] = useState<boolean>(false);
   const [selectedVeical, setSelectedVeical] = useState<string>("");
   const [veicalDescription, setVicalDescription] = useState<string>("");
@@ -104,7 +106,17 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
   useEffect(() => {
     fetchData();
   }, []);
+  const { latitude, longitude, error } = useLiveLocation();
+  const location1 = useLocation();
 
+  useEffect(() => {
+    if (latitude && longitude) {
+      console.log("Live location:", latitude, longitude);
+    }
+    if (error) {
+      console.warn("Location error:", error);
+    }
+  }, [latitude, longitude, error, location1, estimates]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -163,6 +175,62 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
       setLoading(false);
     }
   };
+  const location = useLiveLocation();
+  const pickupAutocompleteRef = useRef<google.maps.places.Autocomplete | null>(
+    null
+  );
+  const dropAutocompleteRef = useRef<google.maps.places.Autocomplete | null>(
+    null
+  );
+  const [loadingAddress, setLoadingAddress] = useState(false);
+
+  useEffect(() => {
+    const autoFillPickup = async () => {
+      if (
+        location.latitude &&
+        location.longitude &&
+        !formData.pickupAddress &&
+        !loadingAddress
+      ) {
+        setLoadingAddress(true);
+        const address = await fetchAddressFromCoordinates(
+          location.latitude,
+          location.longitude
+        );
+        if (address) {
+          setFormData((prev) => ({ ...prev, pickupAddress: address }));
+        }
+        setLoadingAddress(false);
+      }
+    };
+
+    autoFillPickup();
+  }, [location.latitude, location.longitude, estimates]);
+  const handlePickupPlaceChanged = () => {
+    const place = pickupAutocompleteRef.current?.getPlace();
+    if (place?.formatted_address) {
+      console.log("Selected pickup address:", place.formatted_address);
+      setFormData((prev) => ({
+        ...prev,
+        pickupAddress: place.formatted_address || ""
+      }));
+    } else {
+      console.warn("No formatted address found in pickup place");
+    }
+  };
+
+  const handleDropPlaceChanged = () => {
+    const place = dropAutocompleteRef.current?.getPlace();
+    if (place?.formatted_address) {
+      console.log("Selected drop address:", place.formatted_address);
+      setFormData((prev) => ({
+        ...prev,
+        dropAddress: place.formatted_address || ""
+      }));
+    } else {
+      console.warn("No formatted address found in drop place");
+    }
+  };
   return (
     <div
       className="fixed top-0 w-full font-titillium h-screen bg-black bg-opacity-80 z-20 md:flex justify-between items-center"
@@ -215,7 +283,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
             : "md:translate-x-full translate-y-full opacity-0"
         }`}
       >
-        <div className="md:py-20 py-5 px-3 ">
+        <div className="md:py-10 py-5 px-3 ">
           {!selectedVeical ? (
             <div>
               {data?.map((item, index) => (
@@ -283,28 +351,39 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                 </div>
               )}
 
-              <PickupForm />
-              {/* <form
+              {/* <PickupForm /> */}
+              <LoadScript
+                googleMapsApiKey="AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE"
+                libraries={libraries}
+              >
+                <form
                   className="flex flex-col bg-white items-center px-5 py-8 rounded-r-xl rounded-bl-xl gap-3 w-auto"
                   onSubmit={(e) => handleSubmit(e)}
                 >
                   <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
-                    <label htmlFor="pickupaddress" className=" text-sm">
+                    <label className="block mb-3 w-full text-sm">
                       Pickup Address
-                      <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
-                        *
-                      </span>
+                      <Autocomplete
+                        onLoad={(autocomplete) => {
+                          pickupAutocompleteRef.current = autocomplete;
+                          console.log("Pickup Autocomplete loaded");
+                        }}
+                        onPlaceChanged={handlePickupPlaceChanged}
+                      >
+                        <input
+                          type="text"
+                          name="pickupAddress"
+                          value={formData.pickupAddress}
+                          onChange={handleChange}
+                          placeholder={
+                            loadingAddress
+                              ? "Detecting..."
+                              : "Enter pickup location"
+                          }
+                          className="w-full border px-2 py-1 rounded mt-1 border-none focus:outline-none focus:border-transparent text-sm "
+                        />
+                      </Autocomplete>
                     </label>
-                    <input
-                      className="border-none w-full focus:outline-none focus:border-transparent text-sm"
-                      type="text"
-                      name="pickupAddress"
-                      value={formData.pickupAddress}
-                      onChange={handleChange}
-                      onFocus={() => handleFocus("pickupAddress")}
-                      onBlur={() => handleBlur("pickupAddress")}
-                      placeholder="Sending from"
-                    />
                     {touched.pickupAddress && !formData.pickupAddress && (
                       <p className="text-xs text-red-500 mt-1">
                         Enter Pickup Address
@@ -313,22 +392,26 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                   </div>
 
                   <div className="flex flex-col items-start justify-start border-2 border-gray-200 w-full py-1 px-2 rounded-lg">
-                    <label htmlFor="dropaddress" className=" text-sm">
+                    <label className="block mb-3 w-full text-sm">
                       Drop Address
-                      <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
-                        *
-                      </span>
+                      <Autocomplete
+                        onLoad={(autocomplete) => {
+                          dropAutocompleteRef.current = autocomplete;
+                          console.log("Drop Autocomplete loaded");
+                        }}
+                        onPlaceChanged={handleDropPlaceChanged}
+                        className="w-full"
+                      >
+                        <input
+                          type="text"
+                          name="dropAddress"
+                          value={formData.dropAddress}
+                          onChange={handleChange}
+                          placeholder="Enter drop location"
+                          className="w-full border px-2 py-1 rounded mt-1 border-none focus:outline-none focus:border-transparent text-sm"
+                        />
+                      </Autocomplete>
                     </label>
-                    <input
-                      className="border-none w-full focus:outline-none focus:border-transparent text-sm"
-                      type="text"
-                      name="dropAddress"
-                      value={formData.dropAddress}
-                      onChange={handleChange}
-                      onFocus={() => handleFocus("dropAddress")}
-                      onBlur={() => handleBlur("dropAddress")}
-                      placeholder="Sending to"
-                    />
                     {touched.dropAddress && !formData.dropAddress && (
                       <p className="text-xs text-red-500 mt-1">
                         Enter Drop Address
@@ -368,14 +451,21 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                       </span>
                     </label>
                     <input
-                      className="border-none w-full focus:outline-none focus:border-transparent text-sm w-full caret-white"
-                      type="number"
+                      className="border-none w-full focus:outline-none focus:border-transparent text-sm"
+                      type="text"
                       name="phoneNumber"
                       value={formData.phoneNumber}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        // Allow only digits and restrict to 10
+                        if (/^\d{0,10}$/.test(value)) {
+                          handleChange(e);
+                        }
+                      }}
                       onFocus={() => handleFocus("phoneNumber")}
                       onBlur={() => handleBlur("phoneNumber")}
                       placeholder="Enter contact details"
+                      maxLength={10}
                     />
                     {touched.phoneNumber && !formData.phoneNumber && (
                       <p className="text-xs text-red-500 mt-1">
@@ -458,7 +548,8 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates }) => {
                       <FaLongArrowAltRight />
                     </span>
                   </button>
-                </form> */}
+                </form>
+              </LoadScript>
             </div>
           )}
         </div>
