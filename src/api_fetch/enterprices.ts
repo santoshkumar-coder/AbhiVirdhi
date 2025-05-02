@@ -35,3 +35,21 @@ export const customer_Review = async () => {
     console.log(error);
   }
 };
+
+export const quaryNumbers = async () => {
+  try {
+    const rs = await axios.get(base_url + "admin/get_more_queries");
+    return rs;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const Our_Clients = async () => {
+  try {
+    const rs = await axios.get(base_url + "admin/get_client_images");
+    return rs;
+  } catch (error) {
+    console.log(error);
+  }
+};
