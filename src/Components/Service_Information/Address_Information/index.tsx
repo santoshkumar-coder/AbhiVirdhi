@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { VscTriangleDown } from "react-icons/vsc";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
@@ -9,6 +9,7 @@ import Cities from "../../Home/VehiclesDisplay/Cities";
 import axios from "axios";
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import useLiveLocation from "../../../hook/useLiveLocation";
+import { estimate } from "../../../api_fetch/estimete";
 
 const libraries: "places"[] = ["places"];
 
@@ -43,13 +44,28 @@ const Address_Information: React.FC = () => {
   const [otpError, setotpError] = useState("");
   const [otp, setOtp] = useState("");
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    pickupAddress: string;
+    dropAddress: string;
+    phoneNumber: string;
+    name: string;
+    business: string;
+    gstNumber: string;
+    pickup_lat: number | null;
+    pickup_long: number | null;
+    drop_lat: number | null;
+    drop_long: number | null;
+  }>({
     pickupAddress: "",
     dropAddress: "",
     phoneNumber: "",
     name: "",
     business: "",
-    gstNumber: ""
+    gstNumber: "",
+    pickup_lat: null,
+    pickup_long: null,
+    drop_lat: null,
+    drop_long: null
   });
   const [touched, setTouched] = useState({
     pickupAddress: false,
@@ -82,19 +98,24 @@ const Address_Information: React.FC = () => {
       customer_name: formData.name,
       frequency: formData.business,
       from_address_landmark: formData.pickupAddress,
-      from_address_lat: "28.637189",
-      from_address_long: "77.2756522",
+      from_address_lat: formData.pickup_lat?.toString() || "28.6505331",
+      from_address_long:
+        formData.pickup_long?.toString() || "77.23033699999999",
       geo_region_id: "2",
       to_address_landmark: formData.dropAddress,
-      to_address_lat: "28.6505331",
-      to_address_long: "77.23033699999999",
+      to_address_lat: formData.drop_lat?.toString() || "28.6505331",
+      to_address_long: formData.drop_long?.toString() || "77.23033699999999",
       vehical_info: serviceInformation || "",
       vehical_id: serviceId || ""
-
-      // fare_estimate_token: 'your_fare_estimate_token',
     });
 
-    navigate(`/fare_estimate_mob?${params.toString()}`);
+    const rs = await estimate(formData, serviceId || "");
+    console.log(rs?.status);
+    if (rs?.status) {
+      navigate(`/fare_estimate_mob?${params.toString()}`);
+    } else {
+      alert("Something went wrong, try again");
+    }
   };
 
   const handleVerifyOTP = async () => {
@@ -154,7 +175,12 @@ const Address_Information: React.FC = () => {
           location.longitude
         );
         if (address) {
-          setFormData((prev) => ({ ...prev, pickupAddress: address }));
+          setFormData((prev) => ({
+            ...prev,
+            pickupAddress: address,
+            pickup_lat: location.latitude,
+            pickup_long: location.longitude
+          }));
         }
         setLoadingAddress(false);
       }
@@ -162,29 +188,52 @@ const Address_Information: React.FC = () => {
 
     autoFillPickup();
   }, [location.latitude, location.longitude]);
+
   const handlePickupPlaceChanged = () => {
     const place = pickupAutocompleteRef.current?.getPlace();
-    if (place?.formatted_address) {
+    if (place?.formatted_address && place?.geometry?.location) {
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+
       console.log("Selected pickup address:", place.formatted_address);
-      setFormData((prev) => ({
-        ...prev,
-        pickupAddress: place.formatted_address || ""
-      }));
+      console.log("Pickup location:", { lat, lng });
+
+      if (place.formatted_address) {
+        if (place.formatted_address) {
+          setFormData((prev) => ({
+            ...prev,
+            pickupAddress: place.formatted_address || "",
+            pickup_lat: lat,
+            pickup_long: lng
+          }));
+        } else {
+          console.warn("Formatted address is undefined");
+        }
+      } else {
+        console.warn("Formatted address is undefined");
+      }
     } else {
-      console.warn("No formatted address found in pickup place");
+      console.warn("No valid geometry found for pickup place");
     }
   };
 
   const handleDropPlaceChanged = () => {
     const place = dropAutocompleteRef.current?.getPlace();
-    if (place?.formatted_address) {
+    if (place?.formatted_address && place?.geometry?.location) {
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+
       console.log("Selected drop address:", place.formatted_address);
+      console.log("Drop location:", { lat, lng });
+
       setFormData((prev) => ({
         ...prev,
-        dropAddress: place.formatted_address || ""
+        dropAddress: place.formatted_address || "",
+        drop_lat: lat,
+        drop_long: lng
       }));
     } else {
-      console.warn("No formatted address found in drop place");
+      console.warn("No valid geometry found for drop place");
     }
   };
 
@@ -285,7 +334,7 @@ const Address_Information: React.FC = () => {
                   value={formData.phoneNumber}
                   onChange={(e) => {
                     const value = e.target.value;
-                    // Allow only numbers and limit to 10 digits
+
                     if (/^\d{0,10}$/.test(value)) {
                       handleChange(e);
                     }

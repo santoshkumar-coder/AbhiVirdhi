@@ -77,7 +77,7 @@ const Blog = () => {
         {isLoading ? (
           <div className="text-center">Loading...</div>
         ) : data && data.length > 0 ? (
-          data.map((item, index) => (
+          data?.map((item, index) => (
             <Show_Card key={index} item={item} index={index} />
           ))
         ) : (
