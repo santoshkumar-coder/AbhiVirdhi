@@ -187,7 +187,8 @@ const Footer = () => {
           {/* <span className='text-3xl'>
                         &#169;
                     </span> */}
-          <p>{data?.copyright}</p>
+          {/* <p>{data?.copyright}</p> */}
+          <p>©2025 Pearl Organisation PVT.Ltd.</p>
         </div>
       </div>
     </div>
