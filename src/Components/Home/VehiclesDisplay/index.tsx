@@ -30,7 +30,7 @@ const Vehicels: React.FC<VehicelsProps> = ({
 
   const handleEvent = (item: { name: string; id: string }) => {
     navigate(`/service/${item.name}/${item.id}/${selector}/${city_id}`);
-    window.location.reload();
+    // window.location.reload();
   };
 
   const fetchData = async () => {
