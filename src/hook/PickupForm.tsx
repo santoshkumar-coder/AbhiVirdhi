@@ -8,7 +8,7 @@ const fetchAddressFromCoordinates = async (
   lat: number,
   lng: number
 ): Promise<string | null> => {
-  const apiKey = "AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE"; // Replace with real key
+  const apiKey = "AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8"; // Replace with real key
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
 
   try {
@@ -108,7 +108,7 @@ const PickupForm = () => {
 
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE"
+      googleMapsApiKey="AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8"
       libraries={libraries}
     >
       <form

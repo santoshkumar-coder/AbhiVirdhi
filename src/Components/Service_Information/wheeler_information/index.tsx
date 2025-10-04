@@ -62,7 +62,9 @@ const Wheeler_Information: React.FC<WheelerInformationProps> = ({ data }) => {
               </h1>
             </div>
           </div>
-          {estimate && <GetEstmate setEstimates={setEstimates} estimates={estimate} />}
+          {estimate && 
+          <GetEstmate setEstimates={setEstimates} estimates={estimate} />
+          }
         </div>
       ) : (
         <div>Loading...</div>

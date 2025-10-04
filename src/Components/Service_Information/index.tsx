@@ -9,7 +9,7 @@ import Other_services from "./Other_services";
 import Service_OverView from "./Service_overview";
 import OurOtherServices from "./OurOtherServices";
 import { areas } from "../../api_fetch/cities";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { vehicle_Info } from "../../api_fetch/vehicle_information";
 
 interface State {
@@ -56,9 +56,13 @@ const Service_Information: React.FC = () => {
   };
 
   const fetchVehicle_info = async () => {
+    setVehicleInfoData(null)
+    console.log("hfakfalkflfjlafkalkfjalfjlakf:-----------",serviceId)
     if (serviceId) {
       const rs = await vehicle_Info(serviceId);
       setVehicleInfoData(rs);
+      console.log(rs);
+      
     }
   };
 
@@ -68,9 +72,11 @@ const Service_Information: React.FC = () => {
     });
   }, [serviceId]);
 
+  const location = useLocation();
+
   useEffect(() => {
     fetchVehicle_info();
-  }, [serviceId]);
+  }, [location.pathname, serviceId]);
 
   useEffect(() => {
     fetchData();

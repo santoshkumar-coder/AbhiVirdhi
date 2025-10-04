@@ -26,7 +26,7 @@ interface VehicleInfo {
 const libraries: "places"[] = ["places"];
 
 const fetchAddressFromCoordinates = async (lat: number, lng: number) => {
-  const apiKey = "AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE";
+  const apiKey = "AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8";
   const response = await fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
   );
@@ -155,8 +155,8 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates, estimates }) => {
 
     const rs = await estimate(formData, veicalId || "");
     console.log(rs?.status);
+    navigate(`/fare_estimate_mob?${params.toString()}`);
     if (rs?.status) {
-      navigate(`/fare_estimate_mob?${params.toString()}`);
     } else {
       alert("Something went wrong, try again");
     }
@@ -397,7 +397,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates, estimates }) => {
 
               {/* <PickupForm /> */}
               <LoadScript
-                googleMapsApiKey="AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE"
+                googleMapsApiKey="AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8"
                 libraries={libraries}
               >
                 <form

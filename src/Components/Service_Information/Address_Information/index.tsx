@@ -14,7 +14,7 @@ import { estimate } from "../../../api_fetch/estimete";
 const libraries: "places"[] = ["places"];
 
 const fetchAddressFromCoordinates = async (lat: number, lng: number) => {
-  const apiKey = "AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE";
+  const apiKey = "AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8";
   const response = await fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
   );
@@ -250,7 +250,7 @@ const Address_Information: React.FC = () => {
             <VscTriangleDown />
           </div>
           <LoadScript
-            googleMapsApiKey="AIzaSyDuMG2WaY4Vwi0iM3XqPdUrNAcvjHtR8wE"
+            googleMapsApiKey="AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8"
             libraries={libraries}
           >
             <form
