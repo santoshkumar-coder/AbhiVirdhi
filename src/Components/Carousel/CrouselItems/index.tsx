@@ -1,5 +1,5 @@
 import React from 'react';
-import { LuArrowUpRightFromCircle } from "react-icons/lu";
+import { LuArrowRightFromLine } from "react-icons/lu";
 
 interface CarouselItemProps {  // Correct the spelling
     description: string;
@@ -17,7 +17,7 @@ const CarouselItems: React.FC<CarouselItemProps> = ({ description, image }) => {
             <div className='flex items-center gap-2'>
                 <a href="#" className='border-b-2 border-dashed border-white '>Read Artical
                 </a>
-                <LuArrowUpRightFromCircle />
+                <LuArrowRightFromLine />
             </div>
         </div>
     );
