@@ -241,14 +241,14 @@ const Address_Information: React.FC = () => {
     <div className="w-full font-titillium">
       <div className="flex flex-col justify-center items-center">
         <div className="md:w-auto w-[80%]">
-          <div
+          {/* <div
             className="flex items-center bg-white py-4 mb-1 px-3 gap-2 w-fit rounded-t-xl cursor-pointer"
             onClick={() => setCity(true)}
           >
             <MdLocationPin />
             <span>{selector.select_city}</span>
             <VscTriangleDown />
-          </div>
+          </div> */}
           <LoadScript
           id="GOOGLE_MAP"
             googleMapsApiKey="AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8"
@@ -290,36 +290,49 @@ const Address_Information: React.FC = () => {
                 )}
               </div>
 
-              <div className="flex flex-col items-start justify-start">
-                <label htmlFor="dropaddress" className=" text-sm">
-                  Drop Address
-                  <span className="text-red-500 ml-1 -mt-2 font-bold text-lg">
-                    *
-                  </span>
-                </label>
-                <Autocomplete
-                  onLoad={(autocomplete) => {
-                    dropAutocompleteRef.current = autocomplete;
-                    console.log("Drop Autocomplete loaded");
-                  }}
-                  onPlaceChanged={handleDropPlaceChanged}
-                  className="w-full"
-                >
-                  <input
-                    type="text"
-                    name="dropAddress"
-                    value={formData.dropAddress}
-                    onChange={handleChange}
-                    placeholder="Enter drop location"
-                    className="py-1 rounded border-none focus:outline-none focus:border-transparent text-sm"
-                  />
-                </Autocomplete>
-                {touched.dropAddress && !formData.dropAddress && (
-                  <p className="text-xs text-red-500 mt-1">
-                    Enter Drop Address
-                  </p>
-                )}
-              </div>
+             <div className="flex flex-col items-start w-full">
+  <label
+    htmlFor="dropaddress"
+    className="text-sm text-left w-full"
+  >
+    Drop Address
+    <span className="text-red-500 ml-1 font-bold text-lg">*</span>
+  </label>
+
+  <Autocomplete
+    onLoad={(autocomplete) => {
+      dropAutocompleteRef.current = autocomplete;
+      console.log("Drop Autocomplete loaded");
+    }}
+    onPlaceChanged={handleDropPlaceChanged}
+    className="w-full"
+  >
+    <input
+      type="text"
+      name="dropAddress"
+      value={formData.dropAddress}
+      onChange={handleChange}
+      placeholder="Enter drop location"
+      className="
+        w-full
+        py-2
+        px-2
+        rounded
+        text-sm
+        text-left
+        border
+        focus:outline-none
+       
+      "
+    />
+  </Autocomplete>
+
+  {touched.dropAddress && !formData.dropAddress && (
+    <p className="text-xs text-red-500 mt-1 text-left w-full">
+      Enter Drop Address
+    </p>
+  )}
+</div>
 
               <div className="flex flex-col items-start justify-start">
                 <label htmlFor="phoneNumber" className=" text-sm">
@@ -394,7 +407,7 @@ const Address_Information: React.FC = () => {
                   <input
                     className="border-none bg-transparent capitalize text-sm focus:outline-none focus:border-transparent cursor-pointer"
                     type="text"
-                    placeholder="Enter your name"
+                    placeholder="select from dropdown"
                     disabled
                     value={formData.business}
                   />

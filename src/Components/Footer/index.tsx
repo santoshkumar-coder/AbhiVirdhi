@@ -68,7 +68,7 @@ const Footer = () => {
       <div className="md:flex">
         <div className="md:w-1/5 md:block flex flex-col items-center justify-center md:border-r-2 border-gray-300 pt-0">
           <img className="w-[60%] h-auto ml-5" src={footerLogo} alt="footer" />
-          <p className="text-2xl select-none md:text-start text-center">
+          <p className="text-xl lg:text-2xl select-none md:text-start text-center">
             {data?.tagline}
           </p>
         </div>
@@ -85,15 +85,15 @@ const Footer = () => {
           <h1 className="md:text-xl text-2xl text-white font-bold">
             Quick Links
           </h1>
-          <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
+          {/* <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
             Services
-          </p>
-          <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
+          </p> */}
+          {/* <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
             Tools
-          </p>
-          <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
+          </p> */}
+          {/* <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
             Courier
-          </p>
+          </p> */}
           {Array.isArray(vichel) && vichel?.map((item, index) => (
             <p
               className="my-5 text-gray-200 hover:text-white cursor-pointer select-none"
@@ -133,12 +133,12 @@ const Footer = () => {
           >
             Terms of Services
           </p>
-          <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
+          {/* <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
             Driver Partner Terms & Conditions
           </p>
           <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
             Zero Tolerance Policy
-          </p>
+          </p> */}
           <Link
             to="/insurance_FAQS"
             className="my-5 text-gray-200 hover:text-white cursor-pointer select-none"

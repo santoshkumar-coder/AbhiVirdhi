@@ -14,7 +14,7 @@ const Quary = () => {
 
   const handleQuary = async () => {
     const rs = await quaryNumbers();
-    console.log(rs?.data?.data?.[0]);
+    console.log('jkb ljknv', rs?.data?.data?.[0]);
     setQuary(rs?.data?.data?.[1]);
   };
   useEffect(() => {

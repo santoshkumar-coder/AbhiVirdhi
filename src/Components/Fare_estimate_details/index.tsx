@@ -27,7 +27,8 @@ const Fare_estimate_details = () => {
     const vehical_info = queryParams.get('vehical_info');
     const vehical_id = queryParams.get('vehical_id');
 
-    const [vehicalInfoData, setVehicleInfoData] = useState<VehicelsInfo[] | null>(null)
+    const [vehicalInfoData, setVehicleInfoData] = useState<VehicelsInfo[] | null>(null);
+    console.log('vehicalInfoData', vehicalInfoData)
 
     const fetchVehicle_info = async () => {
         if (vehical_id) {
@@ -66,15 +67,15 @@ const Fare_estimate_details = () => {
                     </div>
 
                     <div className='md:flex items-center justify-between md:px-10 p-5 shadow-[0_2px_10px_rgba(0,0,0,0.5),0_2px_2px_rgba(0,0,0,0.25)] rounded-md'>
-                        <img className='w-60 h-60' src={vehicalInfoData ? vehicalInfoData[0].image : ""} alt="" />
+                        {/* <img className='w-60 h-60' src={vehicalInfoData ? vehicalInfoData[0].image : ""} alt="" /> */}
                         <div className='text-center'>
                             <h1 className='font-bold text-gray-700'>
                                 {vehical_info}
                             </h1>
-                            <h1 className='flex items-center justify-center'>
+                            {/* <h1 className='flex items-center justify-center'>
                                 <p className='font-bold'>₹ {vehicalInfoData && vehicalInfoData[0].starting_price} - {" "}</p>{" "}
                                 <p className='font-bold'> ₹ 170</p>
-                            </h1>
+                            </h1> */}
                         </div>
                         <div className='flex items-center gap-2 bg-blue-300 py-1 px-2 rounded md:mt-0 mt-5 justify-center'>
                             <IoBag />

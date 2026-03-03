@@ -4,7 +4,7 @@ import enterpriceImage from '../../../assests/EnterpriseSupportServices.jpg';
 import parkersMovers from '../../../assests/pakageandmovers.webp';
 import drives from '../../../assests/drivePorter.jpg';
 import { support } from '../../../api_fetch/support';
-
+import  ContactSection  from './ContactSection'
 interface CustumorSupportData {
     customer_support_email: string,
     customer_support_number: string,
@@ -24,13 +24,13 @@ const CustumorSupport = () => {
         fetchData();
     }, [])
     return (
-        <div className='font-titillium pt-10 flex items-center justify-center'>
+        <div className='font-titillium pt-10 flex flex-col items-center justify-center'>
             <div>
                 <div className='text-center'>
                     <h1 className='md:text-5xl text-2xl font-semibold uppercase'>Help Center</h1>
                     <p className='mt-5 font-bold md:text-base text-sm text-black/80'>Need assistance? We're happy to help, reach us out through the appropriate channels below.</p>
                 </div>
-                <div className='md:my-20 my-10 flex justify-center items-center'>
+                <div className='md:my-5 my-2 flex justify-center items-center'>
                     <div className='w-[80%] md:flex justify-center items-center gap-3'>
                         <div className='md:w-[50%]'>
                             <div className='flex md:h-40 h-fit py-5 px-2 items-center md:rounded-tl-lg  gap-5 bg-white text-black p-2 w-full shadow-[0_8px_15px_rgba(0,0,0,0.6)] transform translate-y-[-4px]'>
@@ -99,6 +99,7 @@ const CustumorSupport = () => {
                     </div>
                 </div>
             </div>
+            <ContactSection/>
         </div>
     )
 }

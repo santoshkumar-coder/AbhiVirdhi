@@ -42,7 +42,16 @@ const OurServices = () => {
               return (
                 <div
                   key={index}
-                  className="relative ml-10 pt-1 cursor-pointer bg-gradient-to-r from-[rgba(148,4,4,1)] via-[rgba(150,126,173,1)] to-[rgba(159,6,102,1)] rounded-3xl h-[16rem]"
+                  className="
+relative ml-10 pt-1 cursor-pointer
+rounded-3xl h-[14rem]
+bg-blue-500/80
+backdrop-blur-lg
+border border-blue-300/20
+shadow-xl
+hover:bg-blue-500/30
+transition-all duration-300
+"
                 >
                   <h3 className="text-xs rounded-lt-3xl bg-[rgba(255,192,203,0.3)] font-semibold w-fit py-1 pl-7 pr-4 rounded-r-full mt-5">
                     {item.service_name}
@@ -53,9 +62,9 @@ const OurServices = () => {
                         {item.service_title}
                       </h1>
                     </div>
-                    <div className="bg-[rgba(255,192,203,0.5)] py-3 px-6 rounded-full text-red w-fit absolute bottom-3 left-5">
+                    {/* <div className="bg-[rgba(255,192,203,0.5)] py-3 px-6 rounded-full text-red w-fit absolute bottom-3 left-5">
                       <FaArrowRightLong />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               );

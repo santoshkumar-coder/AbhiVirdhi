@@ -33,7 +33,7 @@ const Enterprise = () => {
       {Object.keys(selector).length !== 0 ? (
         <div className="min-h-screen font-titillium">
           <div className="relative">
-            <div className="h-[80vh] relative">
+            <div className="h-[70vh] lg:h-[90vh] relative">
               <div className="absolute top-0 left-0 w-full h-full bg-black/60" />
               <img
                 className=" w-full h-full"
@@ -41,20 +41,25 @@ const Enterprise = () => {
                 alt=""
               />
             </div>
-            <div>
-              <FillOutUserForm setModalVisiable={setModalVisiable} />
-            </div>
-            <div>
-              <About_enterprise />
+            <div className="flex flex-col lg:flex-row justify-center items-start gap-10 px-4 md:px-10">
+              {/* Form Section */}
+              <div className="w-full lg:w-1/2">
+                <FillOutUserForm setModalVisiable={setModalVisiable} />
+              </div>
+
+              {/* About Section */}
+              <div className="w-full lg:w-1/2">
+                <About_enterprise />
+              </div>
             </div>
           </div>
           {/* <div className='mt-24 bg-black/70 text-white'>
                         <Key_features />
                     </div> */}
-          <div className="mt-24">
+          {/* <div className="mt-24">
             <OurCients />
-          </div>
-          <div className="my-10">
+          </div> */}
+          <div className="">
             <TransportCities />
           </div>
           <div className="my-10">

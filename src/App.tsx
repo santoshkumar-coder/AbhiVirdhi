@@ -3,7 +3,7 @@ import "./App.css";
 import "./index.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes, useLocation, useNavigate } from "react-router";
 import Home from "./Components/Home";
 import Service_Information from "./Components/Service_Information";
 import Support from "./Components/Support";
@@ -26,10 +26,12 @@ import useLiveLocation from "./hook/useLiveLocation";
 const App: React.FC = () => {
   const { latitude, longitude, error } = useLiveLocation();
   const location = useLocation();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (latitude && longitude) {
       console.log("Live location:", latitude, longitude);
+     // navigate(`https://www.google.com/maps?q=${latitude},${longitude}`)
     }
     if (error) {
       console.warn("Location error:", error);
@@ -113,7 +115,7 @@ const App: React.FC = () => {
       ) : (
         <div>
            <Header />
-          <BlogHeader />
+          {/* <BlogHeader /> */}
           <Routes>
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:categoryId" element={<Blog />} />

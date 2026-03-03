@@ -29,12 +29,12 @@ const FillOutUserForm: React.FC<Props> = ({ setModalVisiable }) => {
     }
   };
   return (
-    <div className="absolute top-10 md:left-20 left-14 md:w-[30%] bg-white/90 p-5 rounded-xl font-titillium ">
-      <h1 className="text-center text-gray-800 font-bold text-xl">
+    <div className="absolute top-5 lg:top-10 md:left-20 left-14 md:w-[30%] bg-white/90 p-3 md:p-5 rounded-xl font-titillium ">
+      <h1 className="text-center text-gray-800 font-bold text-base lg:text-xl">
         Fill Out For More Details
       </h1>
       <form action="" onSubmit={handle_enterprise}>
-        <div className="flex items-center rounded-md gap-4 border-2 border-gray-400 px-2 py-3 mt-5">
+        <div className="flex items-center rounded-md gap-2 md:gap-4 border-2 border-gray-400 px-2 py-3 mt-5">
           <label htmlFor="">
             <FaUser />
           </label>
@@ -47,7 +47,7 @@ const FillOutUserForm: React.FC<Props> = ({ setModalVisiable }) => {
             value={name}
           />
         </div>
-        <div className="flex items-center  rounded-md  gap-4 border-2 border-gray-400 px-2 py-3 mt-5">
+        <div className="flex items-center  rounded-md  gap-1 lg:gap-4 border-2 border-gray-400 px-2 py-3 mt-5">
           <label htmlFor="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
