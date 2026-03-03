@@ -28,7 +28,7 @@ const CelebratingHomePage: React.FC = () => {
             // src="https://www.shutterstock.com/image-vector/white-truck-box-path-tracking-600nw-2490530993.jpg"
             className="md:block hidden w-screen h-screen"
           />
-          <div className="md:hidden block w-screen h-screen bg-[#b1d3e5]"></div>
+          <div className="md:hidden block w-screen  h-screen bg-[#b1d3e5]"></div>
         </div>
         {/* <div className="absolute inset-0 flex items-center justify-center max-h-64">
                     <img

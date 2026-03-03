@@ -34,7 +34,7 @@ const Other_services = () => {
         <h1 className="text-xl font-bold">Other Services to Choose From</h1>
       </div>
       <div className="md:flex md:space-y-0 space-y-5 items-center justify-center gap-10 mt-10">
-        {data?.map((item, index) => (
+        { Array.isArray(data) && data?.map((item, index) => (
           <div className="text-center ">
             {item.name !== params.serviceInformation && (
               <div className="bg-blue-50 p-2 rounded-lg">

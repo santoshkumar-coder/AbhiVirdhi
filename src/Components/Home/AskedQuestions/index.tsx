@@ -28,7 +28,7 @@ const AskedQuestions = () => {
                 <h2 className='text-lg mt-3 text-gray-600 md:text-start text-center'>In case you have more questions, feel free to reach out to us.</h2>
             </div>
             <div className='md:w-[80%] my-10 md:mx-0 mx-5'>
-                {data?.map((item, index) => {
+                { Array.isArray(data) && data?.map((item, index) => {
                     return (
                         <div className='border-b-2 border-gray-200 mt-5 py-5' key={index}>
                             <div className='flex items-center justify-between cursor-pointer'

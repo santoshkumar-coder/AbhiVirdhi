@@ -94,7 +94,7 @@ const Footer = () => {
           <p className="my-5 text-gray-200 hover:text-white cursor-pointer select-none">
             Courier
           </p>
-          {vichel?.map((item, index) => (
+          {Array.isArray(vichel) && vichel?.map((item, index) => (
             <p
               className="my-5 text-gray-200 hover:text-white cursor-pointer select-none"
               key={index}
@@ -161,7 +161,7 @@ const Footer = () => {
       </div>
       <div className="flex md:flex-row flex-col md:items-start text-white items-center justify-between py-10">
         <div className="flex gap-5">
-          {socialmeadia?.map((media, index) => (
+          {Array.isArray(socialmeadia) &&  socialmeadia?.map((media, index) => (
             <Link
               key={index}
               to={media.url || "/"}

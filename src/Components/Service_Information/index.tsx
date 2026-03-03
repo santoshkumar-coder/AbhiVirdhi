@@ -37,6 +37,7 @@ interface VehicelsInfo {
 
 const Service_Information: React.FC = () => {
   const [data, setData] = useState<ResponseData | null>(null);
+  const [vehicleLoading, setVehicleLoading] = useState(false);
   const [vehicle_InfoData, setVehicleInfoData] = useState<
     VehicelsInfo[] | null
   >(null);
@@ -54,17 +55,21 @@ const Service_Information: React.FC = () => {
       }
     }
   };
+const fetchVehicle_info = async () => {
+  if (!serviceId) return;
 
-  const fetchVehicle_info = async () => {
-    setVehicleInfoData(null)
-    console.log("hfakfalkflfjlafkalkfjalfjlakf:-----------",serviceId)
-    if (serviceId) {
-      const rs = await vehicle_Info(serviceId);
-      setVehicleInfoData(rs);
-      console.log(rs);
-      
-    }
-  };
+  try {
+    setVehicleLoading(true);
+
+    const rs = await vehicle_Info(serviceId);
+    setVehicleInfoData(rs);
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setVehicleLoading(false);
+  }
+};
 
   useEffect(() => {
     window.scrollTo({
@@ -76,7 +81,7 @@ const Service_Information: React.FC = () => {
 
   useEffect(() => {
     fetchVehicle_info();
-  }, [location.pathname, serviceId]);
+  }, [ serviceId]);
 
   useEffect(() => {
     fetchData();
@@ -111,9 +116,13 @@ const Service_Information: React.FC = () => {
           </div>
         </div>
       </div>
-      <div>
-        <Wheeler_Information data={vehicle_InfoData || []} />
-      </div>
+     <div>
+  {vehicleLoading ? (
+    <p>Loading vehicles...</p>
+  ) : (
+    <Wheeler_Information data={vehicle_InfoData ?? []} />
+  )}
+</div>
       <div>
         <WhyChosse />
       </div>

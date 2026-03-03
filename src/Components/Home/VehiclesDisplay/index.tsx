@@ -68,7 +68,7 @@ const Vehicels: React.FC<VehicelsProps> = ({
       </div>
       <div className="flex items-center w-full justify-center -mt-5">
         <div className="flex flex-wrap justify-center md:gap-10 gap-5">
-          {data?.map((item, index) => (
+          {Array.isArray(data)  && data?.map((item, index) => (
             <div
               key={index}
               className="md:w-40 md:h-40 w-32 h-32 flex flex-col items-center bg-white/80 md:rounded-tl-[3rem] rounded-tl-[2rem] md:rounded-br-[3rem] rounded-br-[2rem] p-5 hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out"
@@ -87,7 +87,7 @@ const Vehicels: React.FC<VehicelsProps> = ({
             </div>
           ))}
         </div>
-        {!data && <div>Loading...</div>}
+        {/* {!data && <div>Loading...</div>} */}
         {/* <div
                     className='md:block hidden bg-blue-700 text-white font-bold w-fit h-fit font-titillium text-lg p-2 rounded-xl hover:cursor-pointer transition-all transform hover:scale-110 duration-500 ease-in-out'
                     onClick={() => setEstimates(true)}

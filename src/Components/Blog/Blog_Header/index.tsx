@@ -41,7 +41,7 @@ const BlogHeader: React.FC = () => {
     return (
         <div>
             <header className="border-b-2 border-gray-200 max-h-20 flex lg:justify-around justify-between items-center sticky top-0 z-20 bg-white">
-                <div>
+                {/* <div>
                     {logo?.logo ? (
                         <img
                             src={logo.logo}
@@ -54,13 +54,15 @@ const BlogHeader: React.FC = () => {
                             Loading...
                         </div>
                     )}
-                </div>
-                <div className="lg:flex hidden gap-5 font-semibold">
+                </div> */}
+                <div className="md:flex hidden gap-5 font-semibold">
                     <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Community Guidelines</Link>
                     <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Life at Abhiviridhi</Link>
                     <Link to="/blog" className="hover:text-blue-800 cursor-pointer">Impact Tales</Link>
                     <Link to="/blog" className="hover:text-blue-800 cursor-pointer ">Enterprise Focus</Link>
-                    <select name="" id="" className="cursor-pointer" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    
+                </div>
+                <select name="" id="" className="cursor-pointer" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                         navigate(`/blog/${e.target.value}`)
                     }}>
                         <option value="" disabled selected>Select a category</option>
@@ -71,16 +73,15 @@ const BlogHeader: React.FC = () => {
                         })}
 
                     </select>
-                </div>
 
 
                 <div className="lg:flex items-center justify-center gap-5 hidden ">
                     <CiSearch className="w-8 h-8 cursor-pointer" />
                     <Link to="/" className="font-semibold bg-[#0445DA] text-white cursor-pointer py-2 px-3 rounded-lg hover:bg-white hover:text-[#0445DA] border-2 border-[#0445DA]">Gen An Estimate</Link>
                 </div>
-                <div className="lg:hidden block mr-5" onClick={() => setShowMenu(true)}>
+                {/* <div className="lg:hidden block mr-5" onClick={() => setShowMenu(true)}>
                     <TbMenu className="font-bold text-3xl text-black hover:text-black/80 cursor-pointer" />
-                </div>
+                </div> */}
             </header>
             {showMenu && <Header_Menu logo={logo?.logo || ""} setShowMenu={setShowMenu} showMenu={showMenu} />}
         </div>

@@ -112,6 +112,7 @@ const App: React.FC = () => {
         </div>
       ) : (
         <div>
+           <Header />
           <BlogHeader />
           <Routes>
             <Route path="/blog" element={<Blog />} />

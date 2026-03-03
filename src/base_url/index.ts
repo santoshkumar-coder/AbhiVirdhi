@@ -1,1 +1,1 @@
-export const base_url = "https://server1.pearl-developer.com/abhivriti/public/api/"
+export const base_url = "https://test.pearl-developer.com/abhivriti/public/api/"

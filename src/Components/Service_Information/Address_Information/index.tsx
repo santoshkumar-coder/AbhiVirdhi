@@ -250,6 +250,7 @@ const Address_Information: React.FC = () => {
             <VscTriangleDown />
           </div>
           <LoadScript
+          id="GOOGLE_MAP"
             googleMapsApiKey="AIzaSyDcgrhI6J19uEqBdh8iPDQYxyPdyp31Hc8"
             libraries={libraries}
           >

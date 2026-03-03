@@ -52,26 +52,35 @@ const OurInformation = () => {
       {/* <div className='my-10 flex items-center justify-center'>
                 <h1 className='md:w-[65%] text-center border-2 border-yellow-800 py-3 rounded-lg text-yellow-800 font-titillium md:text-lg md:px-0 px-2'>🎉 Marhaba Dubai! We're now live & ready to take care of all your logisitical needs.</h1>
             </div> */}
-      <div className=" flex justify-center items-center mt-20 font-titillium">
-        <div className="flex md:flex-nowrap flex-wrap w-[83%] justify-between w-full">
-          <div className="font-[700] flex flex-col justify-center items-center">
-            <h1 className="text-[2rem]">20+</h1>
-            <h1 className="text-[1.5rem] text-gray-400">Cities</h1>
-          </div>
-          <div className="font-[700] flex flex-col justify-center items-center">
-            <h1 className="text-[2rem]">5 Lakh+</h1>
-            <h1 className="text-[1.5rem] text-gray-400">Driver Partners</h1>
-          </div>
-          <div className="font-[700] flex flex-col justify-center items-center">
-            <h1 className="text-[2rem]">1 Crore+</h1>
-            <h1 className="text-[1.5rem] text-gray-400">Customers</h1>
-          </div>
-          <div className="font-[700] flex flex-col justify-center items-center">
-            <h1 className="text-[2rem]">10 Crore+</h1>
-            <h1 className="text-[1.5rem] text-gray-400">Tips</h1>
-          </div>
-        </div>
-      </div>
+      <div className="flex justify-center items-center mt-20 font-titillium px-2 lg:px-4">
+  <div className="w-full max-w-[83%] grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-2 lg:gap-x-6 text-center">
+
+    <div className="font-[700] flex flex-col items-center">
+      <h1 className="text-2xl md:text-[2rem]">20+</h1>
+      <h1 className="text-lg md:text-[1.5rem] text-gray-400">Cities</h1>
+    </div>
+
+    <div className="font-[700] flex flex-col items-center">
+      <h1 className="text-2xl md:text-[2rem]">5 Lakh+</h1>
+      <h1 className="text-lg md:text-[1.5rem] text-gray-400">
+        Driver Partners
+      </h1>
+    </div>
+
+    <div className="font-[700] flex flex-col items-center">
+      <h1 className="text-2xl md:text-[2rem]">1 Crore+</h1>
+      <h1 className="text-lg md:text-[1.5rem] text-gray-400">
+        Customers
+      </h1>
+    </div>
+
+    <div className="font-[700] flex flex-col items-center">
+      <h1 className="text-2xl md:text-[2rem]">10 Crore+</h1>
+      <h1 className="text-lg md:text-[1.5rem] text-gray-400">Trips</h1>
+    </div>
+
+  </div>
+</div>
       {/* <div className='flex justify-center items-center my-14'>
                 <div className='h-[30rem]'>
                     <img src={indianMap} className='h-full' alt="Indian Map" />
