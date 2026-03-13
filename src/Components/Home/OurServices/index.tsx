@@ -11,6 +11,7 @@ interface OurService {
 
 const OurServices = () => {
   const [data, setData] = useState<OurService[] | null>(null);
+  console.log('data : ', data)
   const fetchData = async () => {
     const rs = await services();
     console.log(rs);

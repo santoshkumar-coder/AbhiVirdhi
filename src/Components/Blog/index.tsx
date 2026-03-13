@@ -62,7 +62,7 @@ const Blog = () => {
     }
 
     window.scrollTo({
-      top: 0
+      top: 0,
     });
   }, [categoryId]);
 
@@ -77,9 +77,11 @@ const Blog = () => {
         {isLoading ? (
           <div className="text-center">Loading...</div>
         ) : data && data.length > 0 ? (
-          data?.map((item, index) => (
-            <Show_Card key={index} item={item} index={index} />
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mx-5 md:mx-10">
+            {data.map((item, index) => (
+              <Show_Card key={index} item={item} index={index} />
+            ))}
+          </div>
         ) : (
           <div className="text-center text-xl font-semibold text-gray-500">
             No data found

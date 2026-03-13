@@ -1,4 +1,4 @@
-import React, { ReactHTMLElement, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
 import { IoIosMailOpen } from "react-icons/io";
@@ -9,13 +9,63 @@ interface Props {
 }
 
 const FillOutUserForm: React.FC<Props> = ({ setModalVisiable }) => {
-  const [name, setName] = useState<string>("");
-  const [companyName, setCompanyName] = useState<string>("");
-  const [number, setNumber] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [number, setNumber] = useState("");
+  const [email, setEmail] = useState("");
+
+  const [errors, setErrors] = useState({
+    name: "",
+    companyName: "",
+    number: "",
+    email: "",
+  });
+
+  const validateForm = () => {
+    const newErrors = {
+      name: "",
+      companyName: "",
+      number: "",
+      email: "",
+    };
+
+    let valid = true;
+
+    if (!name.trim()) {
+      newErrors.name = "Name is required";
+      valid = false;
+    }
+
+    if (!companyName.trim()) {
+      newErrors.companyName = "Company name is required";
+      valid = false;
+    }
+
+    if (!number.trim()) {
+      newErrors.number = "Phone number is required";
+      valid = false;
+    } else if (!/^[0-9]{10}$/.test(number)) {
+      newErrors.number = "Phone number must be 10 digits";
+      valid = false;
+    }
+
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+      valid = false;
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      newErrors.email = "Invalid email address";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
 
   const handle_enterprise = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
+
     const rs = (await Add_enterprise(name, number, email, companyName)) as {
       status: number;
     };
@@ -26,75 +76,119 @@ const FillOutUserForm: React.FC<Props> = ({ setModalVisiable }) => {
       setCompanyName("");
       setNumber("");
       setEmail("");
+
+      setErrors({
+        name: "",
+        companyName: "",
+        number: "",
+        email: "",
+      });
     }
   };
+
   return (
-    <div className="absolute top-5 lg:top-10 md:left-20 left-14 md:w-[30%] bg-white/90 p-3 md:p-5 rounded-xl font-titillium ">
+    <div className="absolute top-5 lg:top-10 md:left-20 left-14 md:w-[30%] bg-white/90 p-3 md:p-5 rounded-xl font-titillium">
       <h1 className="text-center text-gray-800 font-bold text-base lg:text-xl">
         Fill Out For More Details
       </h1>
-      <form action="" onSubmit={handle_enterprise}>
-        <div className="flex items-center rounded-md gap-2 md:gap-4 border-2 border-gray-400 px-2 py-3 mt-5">
-          <label htmlFor="">
-            <FaUser />
-          </label>
+
+      <form onSubmit={handle_enterprise}>
+        {/* NAME */}
+        <div
+          className={`flex items-center gap-4 border-2 rounded-md px-2 py-3 mt-5 ${
+            errors.name ? "border-red-500" : "border-gray-400"
+          }`}
+        >
+          <FaUser />
           <input
-            className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+            className="w-full bg-transparent outline-none"
             type="text"
             placeholder="Enter your Name"
-            aria-label="Name"
-            onChange={(e) => setName(e.target.value)}
             value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="flex items-center  rounded-md  gap-1 lg:gap-4 border-2 border-gray-400 px-2 py-3 mt-5">
-          <label htmlFor="">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="14"
-              viewBox="0 0 18 14"
-              fill="none"
-            >
-              <path
-                d="M10.6666 7.83337H14.8333V6.16671H10.6666V7.83337ZM10.6666 5.33337H14.8333V3.66671H10.6666V5.33337ZM3.16663 10.3334H9.83329V9.87504C9.83329 9.25004 9.52774 8.75351 8.91663 8.38546C8.30552 8.0174 7.49996 7.83337 6.49996 7.83337C5.49996 7.83337 4.6944 8.0174 4.08329 8.38546C3.47218 8.75351 3.16663 9.25004 3.16663 9.87504V10.3334ZM6.49996 7.00004C6.95829 7.00004 7.35065 6.83685 7.67704 6.51046C8.00343 6.18407 8.16663 5.79171 8.16663 5.33337C8.16663 4.87504 8.00343 4.48268 7.67704 4.15629C7.35065 3.8299 6.95829 3.66671 6.49996 3.66671C6.04163 3.66671 5.64926 3.8299 5.32288 4.15629C4.99649 4.48268 4.83329 4.87504 4.83329 5.33337C4.83329 5.79171 4.99649 6.18407 5.32288 6.51046C5.64926 6.83685 6.04163 7.00004 6.49996 7.00004ZM2.33329 13.6667C1.87496 13.6667 1.4826 13.5035 1.15621 13.1771C0.82982 12.8507 0.666626 12.4584 0.666626 12V2.00004C0.666626 1.54171 0.82982 1.14935 1.15621 0.822957C1.4826 0.496568 1.87496 0.333374 2.33329 0.333374H15.6666C16.125 0.333374 16.5173 0.496568 16.8437 0.822957C17.1701 1.14935 17.3333 1.54171 17.3333 2.00004V12C17.3333 12.4584 17.1701 12.8507 16.8437 13.1771C16.5173 13.5035 16.125 13.6667 15.6666 13.6667H2.33329Z"
-                fill="#4E525A"
-              />
-            </svg>
-          </label>
+        {errors.name && (
+          <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+        )}
+
+        {/* COMPANY */}
+        <div
+          className={`flex items-center gap-4 border-2 rounded-md px-2 py-3 mt-5 ${
+            errors.companyName ? "border-red-500" : "border-gray-400"
+          }`}
+        >
+          <FaUser />
           <input
-            className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+            className="w-full bg-transparent outline-none"
             type="text"
             placeholder="Enter your Company Name"
-            onChange={(e) => setCompanyName(e.target.value)}
             value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
           />
         </div>
-        <div className="flex items-center  rounded-md  gap-4 border-2 border-gray-400 px-2 py-3 mt-5">
-          <label htmlFor="">
-            <IoCallSharp />
-          </label>
+        {errors.companyName && (
+          <p className="text-red-500 text-xs mt-1">{errors.companyName}</p>
+        )}
+
+        {/* PHONE */}
+        <div
+          className={`flex items-center gap-4 border-2 rounded-md px-2 py-3 mt-5 ${
+            errors.number ? "border-red-500" : "border-gray-400"
+          }`}
+        >
+          <IoCallSharp />
           <input
-            className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+            className="w-full bg-transparent outline-none"
             type="text"
             placeholder="Enter your Phone Number"
-            onChange={(e) => setNumber(e.target.value)}
             value={number}
+            maxLength={10}
+            onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, "");
+              setNumber(value);
+            }}
+            onKeyDown={(e) => {
+              if (
+                !/[0-9]/.test(e.key) &&
+                e.key !== "Backspace" &&
+                e.key !== "ArrowLeft" &&
+                e.key !== "ArrowRight" &&
+                e.key !== "Tab"
+              ) {
+                e.preventDefault();
+              }
+            }}
           />
         </div>
-        <div className="flex items-center gap-4  rounded-md  border-2 border-gray-400 px-2 py-3 mt-5">
-          <label htmlFor="">
-            <IoIosMailOpen />
-          </label>
+        {errors.number && (
+          <p className="text-red-500 text-xs mt-1">{errors.number}</p>
+        )}
+
+        {/* EMAIL */}
+        <div
+          className={`flex items-center gap-4 border-2 rounded-md px-2 py-3 mt-5 ${
+            errors.email ? "border-red-500" : "border-gray-400"
+          }`}
+        >
+          <IoIosMailOpen />
           <input
-            className="border-none w-full bg-transparent ring-none focus:ring-none focus:ring-blue-500 focus:border-transparent focus:outline-none "
+            className="w-full bg-transparent outline-none"
             type="text"
             placeholder="Enter your Email ID"
-            onChange={(e) => setEmail(e.target.value)}
             value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <button className="mt-5 bg-blue-800 font-bold rounded-md hover:bg-blue-700 w-full py-3 text-white">
+        {errors.email && (
+          <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+        )}
+
+        {/* BUTTON */}
+        <button
+          type="submit"
+          className="mt-5 bg-blue-800 font-bold rounded-md hover:bg-blue-700 w-full py-3 text-white"
+        >
           Get in Touch
         </button>
       </form>

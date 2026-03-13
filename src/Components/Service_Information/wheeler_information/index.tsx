@@ -17,6 +17,7 @@ interface WheelerInformationProps {
 }
 
 const Wheeler_Information: React.FC<WheelerInformationProps> = ({ data }) => {
+  console.log('data ; ', data)
   const params = useParams();
   const [estimate, setEstimates] = useState<boolean>(false);
   console.log("data->", data);
