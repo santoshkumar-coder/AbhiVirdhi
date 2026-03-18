@@ -1,5 +1,5 @@
 import axios from "axios";
-import { base_url } from "../base_url";
+import { base_url } from "../base_url/index";
 
 export const estimate = async (data: any, serviceId: string | undefined) => {
   const url = `${base_url}calculate_price`;

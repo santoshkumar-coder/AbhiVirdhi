@@ -1,5 +1,5 @@
 import axios from "axios";
-import { base_url } from "../base_url";
+import { base_url } from "../base_url/index";
 import { BANNERS } from "../redux/action";
 
 export const banners = async (dispatch: any) => {

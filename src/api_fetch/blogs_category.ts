@@ -1,5 +1,8 @@
+
+
+
 import axios from "axios";
-import { base_url } from "../base_url";
+import { base_url } from "../base_url/index";
 
 export const blog_category = async () => {
     try {

@@ -48,7 +48,7 @@ const CelebratingHomePage: React.FC = () => {
       <div>{city && <Cities setCity={setCity} setCity_Id={setCity_Id} />}</div>
       {estimates && (
         <div>
-          <GetEstmate setEstimates={setEstimates} estimates={estimates} />
+          <GetEstmate setEstimates={setEstimates} estimates={estimates} fromdata={selector.home_text_banner} />
         </div>
       )}
     </div>

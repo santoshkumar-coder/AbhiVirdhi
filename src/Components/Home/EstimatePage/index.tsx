@@ -15,6 +15,7 @@ import { estimate } from "../../../api_fetch/estimete";
 interface EstimateProps {
   setEstimates: (estmates: boolean) => void;
   estimates: boolean;
+  fromdata:any;
 }
 interface VehicleInfo {
   name: string;
@@ -38,9 +39,11 @@ const fetchAddressFromCoordinates = async (lat: number, lng: number) => {
   }
 };
 
-const GetEstmate: React.FC<EstimateProps> = ({ setEstimates, estimates }) => {
+const GetEstmate: React.FC<EstimateProps> = ({ setEstimates, estimates, fromdata }) => {
   const [show, setShow] = useState<boolean>(false);
   const [selectedVeical, setSelectedVeical] = useState<string>("");
+  console.log("fromdata->", fromdata);
+  console.log("selectedVeical->", selectedVeical);
   const [veicalDescription, setVicalDescription] = useState<string>("");
   const [data, setData] = useState<VehicleInfo[] | null>(null);
   const [veicalId, setVeicalId] = useState<string>("");
@@ -303,7 +306,7 @@ const GetEstmate: React.FC<EstimateProps> = ({ setEstimates, estimates }) => {
           {selectedVeical === "Two Wheeler" && (
             <h1 className="text-4xl font-bold ">Two Wheeler</h1>
           )}
-          {selectedVeical === "Mini Trucks" && (
+          {selectedVeical === "Mini Truck" && (
             <h1 className="text-4xl font-bold ">Mini Trucks</h1>
           )}
           {selectedVeical === "Three Wheeler" && (

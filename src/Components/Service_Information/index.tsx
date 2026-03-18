@@ -28,10 +28,12 @@ interface ResponseData {
 }
 
 interface VehicelsInfo {
+  id: number;
   image: string;
   name: string;
   starting_price: string;
   weight: string;
+  max_weight: string;
   width: string;
 }
 
@@ -45,6 +47,7 @@ const Service_Information: React.FC = () => {
     city_id: string;
     serviceId: string;
   }>();
+
 
   const fetchData = async () => {
     if (city_id) {
@@ -62,8 +65,27 @@ const fetchVehicle_info = async () => {
     setVehicleLoading(true);
 
     const rs = await vehicle_Info(serviceId);
-    setVehicleInfoData(rs);
+ 
 
+    const matchedVehicle = rs.find(
+      (item: any) => item.id === Number(serviceId)
+    );
+
+    if (matchedVehicle) {
+      setVehicleInfoData([
+        {
+          id: matchedVehicle.id,
+          name: matchedVehicle.name,
+          image: matchedVehicle.image,
+          starting_price: matchedVehicle.starting_price || "",
+          weight: matchedVehicle.min_weight || "",
+          max_weight: matchedVehicle.max_weight || "",
+          width: matchedVehicle.width || "",
+        },
+      ]);
+    } else {
+      setVehicleInfoData([]);
+    }
   } catch (err) {
     console.error(err);
   } finally {
@@ -73,7 +95,7 @@ const fetchVehicle_info = async () => {
 
   useEffect(() => {
     window.scrollTo({
-      top: 0
+      top: 0,
     });
   }, [serviceId]);
 
@@ -81,7 +103,7 @@ const fetchVehicle_info = async () => {
 
   useEffect(() => {
     fetchVehicle_info();
-  }, [ serviceId]);
+  }, [serviceId]);
 
   useEffect(() => {
     fetchData();
@@ -116,13 +138,13 @@ const fetchVehicle_info = async () => {
           </div>
         </div>
       </div>
-     <div>
-  {vehicleLoading ? (
-    <p>Loading vehicles...</p>
-  ) : (
-    <Wheeler_Information data={vehicle_InfoData ?? []} />
-  )}
-</div>
+      <div>
+        {vehicleLoading ? (
+          <p>Loading vehicles...</p>
+        ) : (
+          <Wheeler_Information data={vehicle_InfoData ?? []} />
+        )}
+      </div>
       <div>
         <WhyChosse />
       </div>
